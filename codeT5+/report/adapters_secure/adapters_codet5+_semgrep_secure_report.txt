@@ -1,0 +1,85 @@
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 208, ERROR: 0 (Total: 208)
+CWE-400: INFO: 0, WARNING: 23, ERROR: 0 (Total: 23)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 11, ERROR: 7 (Total: 18)
+CWE-377: INFO: 0, WARNING: 9, ERROR: 0 (Total: 9)
+CWE-78: INFO: 3, WARNING: 6, ERROR: 0 (Total: 9)
+CWE-754: INFO: 4, WARNING: 0, ERROR: 0 (Total: 4)
+CWE-502: Deserialization of Untrusted Data: INFO: 0, WARNING: 1, ERROR: 1 (Total: 2)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 1, ERROR: 1 (Total: 2)
+CWE-319: Cleartext Transmission of Sensitive Information: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-327: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-502: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-377: Insecure Temporary File: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-330: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-89: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-327: Use of a Broken or Risky Cryptographic Algorithm: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 284 (47.18%)
+Total defective functions (excluding errors): 275 (45.68%)
+Total errors: 43. Errors w/o duplicates: 43 (7.14%)
+Total issues (considering multiple issues per function and excluding errors): 412 (68.44%)
+Total empty files: 0 (0.00%)
+Total errors including empty files: 43 (7.14%)
+No of issues per severity type: {'ERROR': 11, 'WARNING': 390, 'INFO': 9, 'CRITICAL': 2} and their rates:
+ERROR: 2.67%
+WARNING: 94.66%
+INFO: 2.18%
+CRITICAL: 0.49%
+
+No of issues per category type: {'best-practice': 123, 'security': 288, 'maintainability': 1} and their rates:
+best-practice: 29.85%
+security: 69.90%
+maintainability: 0.24%
+
+Top 5 issues per category type:
+
+---> Category: best-practice <---
+    unspecified-open-encoding: 75 (60.98%)
+    use-timeout: 23 (18.70%)
+    use-raise-for-status: 20 (16.26%)
+    arbitrary-sleep: 2 (1.63%)
+    pass-body-fn: 2 (1.63%)
+    OTHERS: 1 (0.81%)
+
+---> Category: maintainability <---
+    useless-if-body: 1 (100.00%)
+
+---> Category: security <---
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 208 (72.22%)
+    CWE-400: 23 (7.99%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 18 (6.25%)
+    CWE-377: 9 (3.12%)
+    CWE-78: 9 (3.12%)
+    OTHERS: 21 (7.29%)
+
+
+No of issues, per severity, per category type and their rates:
+{'CRITICAL': {'best-practice': 0, 'maintainability': 0, 'security': 2},
+ 'ERROR': {'best-practice': 2, 'maintainability': 0, 'security': 9},
+ 'INFO': {'best-practice': 0, 'maintainability': 0, 'security': 9},
+ 'WARNING': {'best-practice': 121, 'maintainability': 1, 'security': 262}}
+
+---> Severity: ERROR <---
+    best-practice: 18.18%
+    security: 81.82%
+    maintainability: 0.00%
+
+---> Severity: WARNING <---
+    best-practice: 31.51%
+    security: 68.23%
+    maintainability: 0.26%
+
+---> Severity: INFO <---
+    best-practice: 0.00%
+    security: 100.00%
+    maintainability: 0.00%
+
+---> Severity: CRITICAL <---
+    best-practice: 0.00%
+    security: 100.00%
+    maintainability: 0.00%
+

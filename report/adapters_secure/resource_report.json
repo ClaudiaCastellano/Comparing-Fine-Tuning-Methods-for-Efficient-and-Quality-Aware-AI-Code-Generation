@@ -1,0 +1,8 @@
+{
+    "technique": "adapter_houlsby",
+    "training_time_sec": 12610.025565385818,
+    "gpu_max_memory_GB": 4.047384738922119,
+    "trainable_parameters": 1789056,
+    "total_parameters": 126032256,
+    "model_disk_size_MB": 1175.7720861434937
+}

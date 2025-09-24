@@ -1,0 +1,46 @@
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 4, ERROR: 2 (Total: 6)
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
+CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes: INFO: 0, WARNING: 0, ERROR: 2 (Total: 2)
+CWE-89: INFO: 0, WARNING: 2, ERROR: 0 (Total: 2)
+CWE-78: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 16 (2.66%)
+Total defective functions (excluding errors): 7 (1.16%)
+Total errors: 549. Errors w/o duplicates: 549 (91.20%)
+Total issues (considering multiple issues per function and excluding errors): 17 (2.82%)
+Total empty files: 30 (4.98%)
+Total errors including empty files: 579 (96.18%)
+No of issues per severity type: {'WARNING': 13, 'ERROR': 4} and their rates:
+WARNING: 76.47%
+ERROR: 23.53%
+
+No of issues per category type: {'maintainability': 3, 'security': 14} and their rates:
+maintainability: 17.65%
+security: 82.35%
+
+Top 5 issues per category type:
+
+---> Category: maintainability <---
+    return-not-in-function: 2 (66.67%)
+    code-after-unconditional-return: 1 (33.33%)
+
+---> Category: security <---
+    CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): 6 (42.86%)
+    CWE-668: Exposure of Resource to Wrong Sphere: 3 (21.43%)
+    CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes: 2 (14.29%)
+    CWE-89: 2 (14.29%)
+    CWE-78: 1 (7.14%)
+
+
+No of issues, per severity, per category type and their rates:
+{'ERROR': {'maintainability': 0, 'security': 4},
+ 'WARNING': {'maintainability': 3, 'security': 9}}
+
+---> Severity: WARNING <---
+    maintainability: 25.00%
+    security: 75.00%
+
+---> Severity: ERROR <---
+    maintainability: 0.00%
+    security: 100.00%
+

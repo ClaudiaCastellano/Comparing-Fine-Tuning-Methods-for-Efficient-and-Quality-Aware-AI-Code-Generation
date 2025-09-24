@@ -1,0 +1,8 @@
+{
+    "technique": "lora_or_qlora_seq2seq",
+    "training_time_sec": 1899.031981229782,
+    "gpu_max_memory_GB": 2.8909149169921875,
+    "trainable_parameters": 1769472,
+    "total_parameters": 224651520,
+    "model_disk_size_MB": 56.85439491271973
+}

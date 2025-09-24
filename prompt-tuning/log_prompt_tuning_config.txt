@@ -1,0 +1,45 @@
+trainable params: 38,400 || all params: 124,281,600 || trainable%: 0.0309
+📊 Train set size: 4100
+📊 Validation set size: 577
+{'loss': 3.8853, 'grad_norm': 0.32826074957847595, 'learning_rate': 0.0048515625, 'epoch': 0.16}
+{'loss': 2.8343, 'grad_norm': 0.25861138105392456, 'learning_rate': 0.0046953125, 'epoch': 0.31}
+{'loss': 2.416, 'grad_norm': 0.2468107044696808, 'learning_rate': 0.0045390625000000006, 'epoch': 0.47}
+{'loss': 2.042, 'grad_norm': 0.3025481402873993, 'learning_rate': 0.0043828125, 'epoch': 0.62}
+{'loss': 1.7078, 'grad_norm': 0.24208809435367584, 'learning_rate': 0.0042265625, 'epoch': 0.78}
+{'loss': 1.4864, 'grad_norm': 0.22508364915847778, 'learning_rate': 0.0040703125, 'epoch': 0.94}
+{'eval_loss': 1.1986513137817383, 'eval_runtime': 161.7659, 'eval_samples_per_second': 3.567, 'eval_steps_per_second': 0.896, 'epoch': 1.0}
+{'loss': 1.3973, 'grad_norm': 0.2087206095457077, 'learning_rate': 0.0039140625, 'epoch': 1.09}
+{'loss': 1.28, 'grad_norm': 0.18860891461372375, 'learning_rate': 0.0037578125000000003, 'epoch': 1.24}
+{'loss': 1.203, 'grad_norm': 0.2132698893547058, 'learning_rate': 0.0036015625, 'epoch': 1.4}
+{'loss': 1.237, 'grad_norm': 0.1813463717699051, 'learning_rate': 0.0034453125, 'epoch': 1.55}
+{'loss': 1.1884, 'grad_norm': 0.236078143119812, 'learning_rate': 0.0032890625000000003, 'epoch': 1.71}
+{'loss': 1.1802, 'grad_norm': 0.2165437936782837, 'learning_rate': 0.0031328125, 'epoch': 1.87}
+{'eval_loss': 1.0492030382156372, 'eval_runtime': 161.9001, 'eval_samples_per_second': 3.564, 'eval_steps_per_second': 0.896, 'epoch': 2.0}
+{'loss': 1.1946, 'grad_norm': 0.18519140779972076, 'learning_rate': 0.0029765625, 'epoch': 2.02}
+{'loss': 1.2001, 'grad_norm': 0.18760067224502563, 'learning_rate': 0.0028203125000000003, 'epoch': 2.17}
+{'loss': 1.1408, 'grad_norm': 0.19825905561447144, 'learning_rate': 0.0026640625, 'epoch': 2.33}
+{'loss': 1.1618, 'grad_norm': 0.1723310351371765, 'learning_rate': 0.0025078125, 'epoch': 2.48}
+{'loss': 1.1051, 'grad_norm': 0.18356925249099731, 'learning_rate': 0.0023515625000000004, 'epoch': 2.64}
+{'loss': 1.0787, 'grad_norm': 0.18108168244361877, 'learning_rate': 0.0021953125, 'epoch': 2.8}
+{'loss': 1.0891, 'grad_norm': 0.1907072365283966, 'learning_rate': 0.0020390625, 'epoch': 2.95}
+{'eval_loss': 0.9984541535377502, 'eval_runtime': 161.7134, 'eval_samples_per_second': 3.568, 'eval_steps_per_second': 0.897, 'epoch': 3.0}
+{'loss': 1.1081, 'grad_norm': 0.21975019574165344, 'learning_rate': 0.0018828125000000002, 'epoch': 3.1}
+{'loss': 1.0983, 'grad_norm': 0.19740605354309082, 'learning_rate': 0.0017265625000000002, 'epoch': 3.26}
+{'loss': 1.0647, 'grad_norm': 0.20864766836166382, 'learning_rate': 0.0015703125, 'epoch': 3.41}
+{'loss': 1.123, 'grad_norm': 0.21170295774936676, 'learning_rate': 0.0014140625000000002, 'epoch': 3.57}
+{'loss': 1.0825, 'grad_norm': 0.1608109474182129, 'learning_rate': 0.0012578125, 'epoch': 3.73}
+{'loss': 1.0613, 'grad_norm': 0.18005916476249695, 'learning_rate': 0.0011015625, 'epoch': 3.88}
+{'eval_loss': 0.976542055606842, 'eval_runtime': 161.7117, 'eval_samples_per_second': 3.568, 'eval_steps_per_second': 0.897, 'epoch': 4.0}
+{'loss': 1.0914, 'grad_norm': 0.17563918232917786, 'learning_rate': 0.0009453125, 'epoch': 4.03}
+{'loss': 1.0895, 'grad_norm': 0.19113558530807495, 'learning_rate': 0.0007890624999999999, 'epoch': 4.19}
+{'loss': 1.0294, 'grad_norm': 0.17358367145061493, 'learning_rate': 0.0006328125, 'epoch': 4.34}
+{'loss': 1.0671, 'grad_norm': 0.1798914223909378, 'learning_rate': 0.0004765625, 'epoch': 4.5}
+{'loss': 1.1036, 'grad_norm': 0.16666825115680695, 'learning_rate': 0.00032031249999999996, 'epoch': 4.66}
+{'loss': 1.0455, 'grad_norm': 0.18495643138885498, 'learning_rate': 0.0001640625, 'epoch': 4.81}
+{'loss': 1.0758, 'grad_norm': 0.16252097487449646, 'learning_rate': 7.8125e-06, 'epoch': 4.97}
+{'eval_loss': 0.9782685041427612, 'eval_runtime': 161.7122, 'eval_samples_per_second': 3.568, 'eval_steps_per_second': 0.897, 'epoch': 4.97}
+{'train_runtime': 12691.7092, 'train_samples_per_second': 1.615, 'train_steps_per_second': 0.05, 'train_loss': 1.3708828806877136, 'epoch': 4.97}
+⏱️ Tempo di training: 12691.86 secondi
+📈 VRAM massima usata: 3.53 GB
+💾 Spazio disco occupato dal Prompt Tuning adapter: 14.48 MB
+✅ Report salvato in resource_report.json

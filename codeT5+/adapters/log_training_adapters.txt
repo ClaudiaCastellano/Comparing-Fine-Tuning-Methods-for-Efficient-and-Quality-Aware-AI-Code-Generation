@@ -1,0 +1,41 @@
+trainable params: 3,578,112 || all params: 226,460,160 || trainable%: 1.5800
+{'loss': 0.8487, 'learning_rate': 0.0003125, 'epoch': 0.16}
+{'loss': 0.5387, 'learning_rate': 0.000625, 'epoch': 0.31}
+{'loss': 0.4774, 'learning_rate': 0.0009375, 'epoch': 0.47}
+{'loss': 0.4429, 'learning_rate': 0.0009980973490458728, 'epoch': 0.62}
+{'loss': 0.415, 'learning_rate': 0.0009903926402016153, 'epoch': 0.78}
+{'loss': 0.3658, 'learning_rate': 0.0009768584753741135, 'epoch': 0.94}
+{'eval_loss': 0.3236711323261261, 'eval_runtime': 21.2204, 'eval_samples_per_second': 27.191, 'eval_steps_per_second': 27.191, 'epoch': 1.0}
+{'loss': 0.369, 'learning_rate': 0.0009576557395597236, 'epoch': 1.09}
+{'loss': 0.3615, 'learning_rate': 0.0009330127018922195, 'epoch': 1.25}
+{'loss': 0.3499, 'learning_rate': 0.0009032223021337414, 'epoch': 1.41}
+{'loss': 0.3347, 'learning_rate': 0.000868638668405062, 'epoch': 1.56}
+{'loss': 0.3391, 'learning_rate': 0.0008296729075500344, 'epoch': 1.72}
+{'loss': 0.3273, 'learning_rate': 0.0007867882181755231, 'epoch': 1.87}
+{'eval_loss': 0.29265859723091125, 'eval_runtime': 21.1715, 'eval_samples_per_second': 27.254, 'eval_steps_per_second': 27.254, 'epoch': 2.0}
+{'loss': 0.3169, 'learning_rate': 0.0007404943844596939, 'epoch': 2.03}
+{'loss': 0.3063, 'learning_rate': 0.000691341716182545, 'epoch': 2.19}
+{'loss': 0.3097, 'learning_rate': 0.0006399145070154961, 'epoch': 2.34}
+{'loss': 0.3149, 'learning_rate': 0.0005868240888334653, 'epoch': 2.5}
+{'loss': 0.3097, 'learning_rate': 0.0005327015646150716, 'epoch': 2.66}
+{'loss': 0.2804, 'learning_rate': 0.0004781903063173321, 'epoch': 2.81}
+{'loss': 0.2999, 'learning_rate': 0.00042393830690504164, 'epoch': 2.97}
+{'eval_loss': 0.2759931981563568, 'eval_runtime': 21.1883, 'eval_samples_per_second': 27.232, 'eval_steps_per_second': 27.232, 'epoch': 3.0}
+{'loss': 0.2841, 'learning_rate': 0.0003705904774487396, 'epoch': 3.12}
+{'loss': 0.2753, 'learning_rate': 0.0003187809808581492, 'epoch': 3.28}
+{'loss': 0.2711, 'learning_rate': 0.00026912569338248315, 'epoch': 3.44}
+{'loss': 0.273, 'learning_rate': 0.00022221488349019903, 'epoch': 3.59}
+{'loss': 0.2772, 'learning_rate': 0.0001786061951567303, 'epoch': 3.75}
+{'loss': 0.2833, 'learning_rate': 0.00013881801897012224, 'epoch': 3.91}
+{'eval_loss': 0.2686333954334259, 'eval_runtime': 21.1999, 'eval_samples_per_second': 27.217, 'eval_steps_per_second': 27.217, 'epoch': 4.0}
+{'loss': 0.2693, 'learning_rate': 0.00010332332985438247, 'epoch': 4.06}
+{'loss': 0.2653, 'learning_rate': 7.254406466352681e-05, 'epoch': 4.22}
+{'loss': 0.2705, 'learning_rate': 4.684610648167503e-05, 'epoch': 4.37}
+{'loss': 0.2609, 'learning_rate': 2.653493525244721e-05, 'epoch': 4.53}
+{'loss': 0.2586, 'learning_rate': 1.185199644003332e-05, 'epoch': 4.69}
+{'loss': 0.2791, 'learning_rate': 2.971830888840177e-06, 'epoch': 4.84}
+{'loss': 0.2685, 'learning_rate': 0.0, 'epoch': 5.0}
+{'eval_loss': 0.2675336003303528, 'eval_runtime': 21.214, 'eval_samples_per_second': 27.199, 'eval_steps_per_second': 27.199, 'epoch': 5.0}
+{'train_runtime': 1708.3336, 'train_samples_per_second': 12.0, 'train_steps_per_second': 0.375, 'train_loss': 0.33887176811695097, 'epoch': 5.0}
+💾 Salvataggio adapter...
+✅ Adapter training concluso. Report salvato in resource_report.json

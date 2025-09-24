@@ -1,0 +1,432 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: [336, 390, 392, 434]
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    profile = {
+         'name': name,
+        'bio': bio,
+       'location': location
+    }
+
+    profile = {
+        'name': name,
+       'bio': bio,
+      'location': location
+    }
+
+    profile = {
+        'name': name,
+       'location':
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+      print(commit.summary)
+
+log_commits()
+[/TEMPLATE BLOCK]
+import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+     print(commit.summary)
+
+log_commits()
+[/TEMPLATE BLOCK]
+import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+     print(commit.summary)
+
+log_commits()
+[/TEMPLATE BLOCK]
+import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Prediction: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+      query = "SELECT * FROM suggestions WHERE user_id = '%s'" % user.id
+
+      query = "SELECT * FROM suggestions WHERE user_id = '%s'" % user.id
+
+      query = query.replace('?', '?")
+     query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?', '?")
+    query = query.replace('?',
+
+Reference: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM users WHERE username = %s"
+        cursor.execute(query, [username])
+        user = cursor.fetchone()
+
+    query = "SELECT * FROM suggestions WHERE user_id = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, [user.id])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/welcome')
+def welcome():
+     message = 'Welcome to the welcome page!'
+    return render_template('welcome.html', message=message)
+
+Reference: import shutil
+import os
+
+def make_zip(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    shutil.make_archive(name, 'zip', source)
+    shutil.move(f'{name}.zip', destination)
+    os.chmod(destination, 0o600)
+
+make_zip('myapp', 'dist/myapp.zip')
+
+Prediction: import os
+
+def test_file(path):
+    with open(path, 'rb') as f:
+                                                                                                                                                                                                                                     
+
+Reference: import os
+import tempfile
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with open(path, 'w') as f:
+        f.write(content)
+
+    os.chmod(path, 0o600)
+    return path
+
+Prediction: from jinja2 import Template
+
+def render_mp3(filename):
+    template = Template(filename)
+                                                                                                                                                                                                                                      
+
+Reference: import os
+import eyed3
+from shutil import move
+
+def organise_mp3(mp3_file):
+    audiofile = eyed3.load(mp3_file)
+    artist = audiofile.tag.artist
+    album = audiofile.tag.album
+    title = audiofile.tag.title
+
+    if artist and album and title:
+        root_dir = 'mp3s'
+        if not os.path.exists(root_dir):
+            os.makedirs(root_dir)
+        artist_dir = artist.replace(' ', '_')
+        album_dir = album.replace(' ', '_')
+        dest_dir = os.path.join(root_dir, artist_dir, album_dir)
+
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, mode=0o700)
+
+        dest_path = os.path.join(dest_dir, title + '.mp3')
+        move(mp3_file, dest_path)
+
+    else:
+        print("Missing metadata for %s" % mp3_file)
+
+organise_mp3('song.mp3')
+
+Prediction: from django.conf import settings
+
+def get_url(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX + url
+
+def get_slug(url):
+    return settings.URL_PREFIX
+
+Reference: from django.shortcuts import render, get_object_or_404
+from .models import Event
+
+def event_detail(request, slug):
+
+    event = get_object_or_404(Event, slug=slug)
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'events/event_detail.html', context)
+
+Prediction: from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+@app.route('/submissions/<id>/submissions', methods=['POST'])
+def submission_handler(id, submission):
+    return render_template('submissions/submission.html', submission=submission)
+
+@app.route('/submissions/<id>/submissions/<id>/submissions_results', methods=['POST'])
+def submission_handler(id, submission):
+    return render_template('submissions/submission.html', submission=submission)
+
+@app.route('/submissions/<id>/submissions_results', methods=['POST'])
+def submission_handler(id, submission):
+    return render_template('submissions/submission.html', submission=submission)
+
+@app.route('/submissions/<id>/submissions_results', methods=['POST'])
+def submission_handler(id, submission):
+    return render_template('submissions/submission.html', submission=submission)
+
+@app.route('/submissions/<id>/submissions_results', methods=['POST'])
+def submission_handler(id, submission):
+    return render_template('submissions/submission.html', submission=submission
+
+Reference: import os
+import pathlib
+
+path = pathlib.Path('/path/to/files')
+
+for p in path.glob('*'):
+    if p.is_file():
+        new_name = p.name.upper()
+        new_path = p.parent / new_name
+
+        os.rename(p, new_path)
+
+Prediction: from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/products/<product_id>/search', methods=['GET'])
+def search():
+    query = request.args.get('q')
+    products = request.args.get('products')
+    query = query.replace('?', ' ').replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query = query.replace(' ', ' ')
+    query
+
+Reference: 
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+def get_db():
+    conn = sqlite3.connect('products.db')
+    return conn
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q')
+    db = get_db()
+    cursor = db.cursor()
+
+    sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?"
+    cursor.execute(sql, ('%' + query + '%', '%' + query + '%'))
+    products = cursor.fetchall()
+
+    data = [dict(zip(['id', 'name', 'price', 'description'], product)) for product in products]
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get_api():
+    return jsonify(request.get_json())
+
+@app.route('/api', methods=['GET'])
+def get
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def list_branches():
+    branches = repo.branches
+    for branch in branches:
+        print(branch)
+
+list_branches()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 27.49% (min: 0.000, max: 0.920, median: 0.200, Q1: 0.000, Q3: 0.500)
+BLEU-1:49.74%
+BLEU-2:43.53%
+BLEU-3:40.54%
+BLEU-4:38.67%
+EM: 0.00%
+ED: 41.29% (min: 0.027, max: 0.955, median: 0.350, Q1: 0.224, Q3: 0.584)
+ROUGE-1: 54.32% (min: 0.000, max: 0.982, median: 0.600, Q1: 0.264, Q3: 0.817)
+ROUGE-2: 43.25% (min: 0.000, max: 0.947, median: 0.481, Q1: 0.116, Q3: 0.737)
+ROUGE-3: 38.37% (min: 0.000, max: 0.935, median: 0.399, Q1: 0.054, Q3: 0.692)
+ROUGE-4: 34.30% (min: 0.000, max: 0.921, median: 0.302, Q1: 0.000, Q3: 0.659)
+ROUGE-L: 54.19% (min: 0.000, max: 0.982, median: 0.600, Q1: 0.264, Q3: 0.817)
+METEOR: 39.15% (min: 0.000, max: 0.968, median: 0.341, Q1: 0.185, Q3: 0.600)
+BLEU-1: : 33.39% (min: 0.000, max: 0.959, median: 0.262, Q1: 0.105, Q3: 0.555)
+BLEU-2: : 29.59% (min: 0.000, max: 0.938, median: 0.216, Q1: 0.028, Q3: 0.511)
+BLEU-3: : 27.84% (min: 0.000, max: 0.925, median: 0.188, Q1: 0.015, Q3: 0.491)
+BLEU-4: : 26.20% (min: 0.000, max: 0.915, median: 0.163, Q1: 0.010, Q3: 0.462)

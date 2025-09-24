@@ -1,0 +1,216 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: [15, 17, 19, 20, 40, 41, 47, 49, 70, 72, 73, 94, 95, 101, 123, 124, 130, 132, 150, 153, 155, 181, 182, 210, 211, 213, 235, 236, 237, 240, 259, 264, 281, 287, 289, 290, 307, 333, 336, 339, 340, 360, 362, 363, 386, 388, 436, 438, 439, 440, 465, 485, 486, 489, 490, 517, 518, 520, 546, 562, 565, 568, 570, 593, 595, 598]
+Number of empty predictions: 66
+Prediction:  也可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以 可以
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: log_commits() """ print(commit.summary) print(commit.summary) print(commit.summary.split('\n')) 
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Prediction:  is the same as the code. """ return render(request, 'user.html', {'suggestions': suggestations}) 
+
+Reference: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM users WHERE username = %s"
+        cursor.execute(query, [username])
+        user = cursor.fetchone()
+
+    query = "SELECT * FROM suggestions WHERE user_id = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, [user.id])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Prediction: Error code that can be useful for troubleshooting. """ # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a better way to do this # TODO: add a
+
+Reference: import shutil
+import os
+
+def make_zip(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    shutil.make_archive(name, 'zip', source)
+    shutil.move(f'{name}.zip', destination)
+    os.chmod(destination, 0o600)
+
+make_zip('myapp', 'dist/myapp.zip')
+
+Prediction: ... """ self.name = name self.path = path self.path_info = path_info self.path_info_long = path_info_long self.path_info_short = path_info_short self.path_info = path_info self.path_info_long = path_info_long self.path_info_short = path_info_short self.path_info = path_info self.path_info_long = path_info_long self.path_info_short = path_info_short self.path_info = path_info self.path_info_long = path_info_long self.path_info_short = path_info_short self.path_info = path_info self.path_info_long = path_info_long self.path_info = path_info self.path_info_short = path_info_short self.path_info = path_info self.path_info_long = path_info_long self.path_info = path_info self.path_info_short = path_info_short self.path_info = path_info_short self.path_info
+
+Reference: import os
+import tempfile
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with open(path, 'w') as f:
+        f.write(content)
+
+    os.chmod(path, 0o600)
+    return path
+
+Prediction: Bos is a list of filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames that contain filenames
+
+Reference: import os
+import eyed3
+from shutil import move
+
+def organise_mp3(mp3_file):
+    audiofile = eyed3.load(mp3_file)
+    artist = audiofile.tag.artist
+    album = audiofile.tag.album
+    title = audiofile.tag.title
+
+    if artist and album and title:
+        root_dir = 'mp3s'
+        if not os.path.exists(root_dir):
+            os.makedirs(root_dir)
+        artist_dir = artist.replace(' ', '_')
+        album_dir = album.replace(' ', '_')
+        dest_dir = os.path.join(root_dir, artist_dir, album_dir)
+
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, mode=0o700)
+
+        dest_path = os.path.join(dest_dir, title + '.mp3')
+        move(mp3_file, dest_path)
+
+    else:
+        print("Missing metadata for %s" % mp3_file)
+
+organise_mp3('song.mp3')
+
+Prediction:  :param url: The URL slug to check for database object. :param name: The name of the database object. :param value: The value of the database object. """ if not name: name = url.split('/')[-1] database = self.get_database(name) if database is None: raise DatabaseNotFound(name) database.name = name database.value = value return database 
+
+Reference: from django.shortcuts import render, get_object_or_404
+from .models import Event
+
+def event_detail(request, slug):
+
+    event = get_object_or_404(Event, slug=slug)
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'events/event_detail.html', context)
+
+Prediction:  = '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1' # '1'
+
+Reference: import os
+import pathlib
+
+path = pathlib.Path('/path/to/files')
+
+for p in path.glob('*'):
+    if p.is_file():
+        new_name = p.name.upper()
+        new_path = p.parent / new_name
+
+        os.rename(p, new_path)
+
+Prediction: I need a python implementation for this task. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I can use as a reference. Please write code that I
+
+Reference: 
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+def get_db():
+    conn = sqlite3.connect('products.db')
+    return conn
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q')
+    db = get_db()
+    cursor = db.cursor()
+
+    sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?"
+    cursor.execute(sql, ('%' + query + '%', '%' + query + '%'))
+    products = cursor.fetchall()
+
+    data = [dict(zip(['id', 'name', 'price', 'description'], product)) for product in products]
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction:  would be something like "5-6-7-8-9" but you can use the following example to get the name of the file that you want to run. """ if not isinstance(path, basestring): raise TypeError("path must be a string") if path is None: raise TypeError("path must be a string") if not isinstance(path, basestring): raise TypeError("path must be a string") if path.startswith("/"): raise ValueError("path must start with a slash") if path.endswith("/"): raise ValueError("path must end with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.endswith("/"): raise ValueError("path must end with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.endswith("/"): raise ValueError("path must end with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.endswith("/"): raise ValueError("path must end with a slash") if path.startswith("/"): raise ValueError("path must start with a slash") if path.startswith("/"): raise ValueError
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def list_branches():
+    branches = repo.branches
+    for branch in branches:
+        print(branch)
+
+list_branches()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 1.09% (min: 0.000, max: 0.970, median: 0.000, Q1: 0.000, Q3: 0.000)
+BLEU-1:12.11%
+BLEU-2:6.04%
+BLEU-3:4.13%
+BLEU-4:3.21%
+EM: 0.00%
+ED: 11.96% (min: 0.001, max: 0.397, median: 0.134, Q1: 0.045, Q3: 0.182)
+ROUGE-1: 7.17% (min: 0.000, max: 0.583, median: 0.039, Q1: 0.000, Q3: 0.100)
+ROUGE-2: 2.09% (min: 0.000, max: 0.370, median: 0.000, Q1: 0.000, Q3: 0.000)
+ROUGE-3: 1.01% (min: 0.000, max: 0.222, median: 0.000, Q1: 0.000, Q3: 0.000)
+ROUGE-4: 0.40% (min: 0.000, max: 0.143, median: 0.000, Q1: 0.000, Q3: 0.000)
+ROUGE-L: 7.12% (min: 0.000, max: 0.583, median: 0.039, Q1: 0.000, Q3: 0.099)
+METEOR: 6.74% (min: 0.000, max: 0.453, median: 0.038, Q1: 0.004, Q3: 0.117)
+BLEU-1: : 1.63% (min: 0.000, max: 0.240, median: 0.000, Q1: 0.000, Q3: 0.016)
+BLEU-2: : 0.56% (min: 0.000, max: 0.109, median: 0.000, Q1: 0.000, Q3: 0.005)
+BLEU-3: : 0.33% (min: 0.000, max: 0.087, median: 0.000, Q1: 0.000, Q3: 0.003)
+BLEU-4: : 0.23% (min: 0.000, max: 0.071, median: 0.000, Q1: 0.000, Q3: 0.002)

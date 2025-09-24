@@ -1,0 +1,361 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: [392]
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+       print(commit.summary)
+
+log_commits()
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Prediction: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+       query = "SELECT * FROM suggestions WHERE user_id = '%s'" % user.id
+
+    with connection.cursor() as cursor:
+        cursor.execute(query, [username])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Reference: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM users WHERE username = %s"
+        cursor.execute(query, [username])
+        user = cursor.fetchone()
+
+    query = "SELECT * FROM suggestions WHERE user_id = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, [user.id])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Prediction: import os
+from jinja2 import Template
+
+def render_template(template_name, template_content):
+    template = Template(template_name, autoescape=True)
+    return template.render(template_content=template_content)
+
+Reference: import shutil
+import os
+
+def make_zip(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    shutil.make_archive(name, 'zip', source)
+    shutil.move(f'{name}.zip', destination)
+    os.chmod(destination, 0o600)
+
+make_zip('myapp', 'dist/myapp.zip')
+
+Prediction: import os
+import pickle
+
+def load_test_files(filename):
+    with open(filename, 'rb') as f:
+         return pickle.load(f)
+
+load_test_files('test.txt')
+load_test_files('test.txt.gz')
+
+Reference: import os
+import tempfile
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with open(path, 'w') as f:
+        f.write(content)
+
+    os.chmod(path, 0o600)
+    return path
+
+Prediction: import os
+
+def create_mp3_file(filename):
+    os.chmod(filename, 0o600)
+    os.chmod(filename, 0o600)
+
+create_mp3_file('mp3.mp3')
+
+Reference: import os
+import eyed3
+from shutil import move
+
+def organise_mp3(mp3_file):
+    audiofile = eyed3.load(mp3_file)
+    artist = audiofile.tag.artist
+    album = audiofile.tag.album
+    title = audiofile.tag.title
+
+    if artist and album and title:
+        root_dir = 'mp3s'
+        if not os.path.exists(root_dir):
+            os.makedirs(root_dir)
+        artist_dir = artist.replace(' ', '_')
+        album_dir = album.replace(' ', '_')
+        dest_dir = os.path.join(root_dir, artist_dir, album_dir)
+
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, mode=0o700)
+
+        dest_path = os.path.join(dest_dir, title + '.mp3')
+        move(mp3_file, dest_path)
+
+    else:
+        print("Missing metadata for %s" % mp3_file)
+
+organise_mp3('song.mp3')
+
+Prediction: from django.conf.urls import url
+from django.db import connection
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return db
+
+def get_db():
+    db = connection.database
+    return
+
+Reference: from django.shortcuts import render, get_object_or_404
+from .models import Event
+
+def event_detail(request, slug):
+
+    event = get_object_or_404(Event, slug=slug)
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'events/event_detail.html', context)
+
+Prediction: import os
+
+def rename_batch(batch_name):
+    os.rename(batch_name, os.path.join(os.path.dirname(__file__), 'batch'))
+
+    os.chmod(batch_name, 0o600)
+
+rename_batch('batch.txt')
+
+Reference: import os
+import pathlib
+
+path = pathlib.Path('/path/to/files')
+
+for p in path.glob('*'):
+    if p.is_file():
+        new_name = p.name.upper()
+        new_path = p.parent / new_name
+
+        os.rename(p, new_path)
+
+Prediction: from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+DATABASE = 'product.db'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.route('/search', methods=['POST'])
+def search():
+    query = request.form['query']
+    query = "SELECT * FROM products WHERE id =?"
+    query += " AND name =?"
+
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(query, (query,))
+    products = cursor.fetchall()
+
+    return jsonify(products)
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: 
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+def get_db():
+    conn = sqlite3.connect('products.db')
+    return conn
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q')
+    db = get_db()
+    cursor = db.cursor()
+
+    sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?"
+    cursor.execute(sql, ('%' + query + '%', '%' + query + '%'))
+    products = cursor.fetchall()
+
+    data = [dict(zip(['id', 'name', 'price', 'description'], product)) for product in products]
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: from jinja2 import Template
+
+def render_template(template_name, template_content):
+    template = Template(template_content, autoescape=True)
+    return template.render(template_name=template_name)
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def list_branches():
+    branches = repo.branches
+    for branch in branches:
+        print(branch)
+
+list_branches()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 42.77% (min: 0.000, max: 1.000, median: 0.470, Q1: 0.000, Q3: 0.750)
+BLEU-1:65.93%
+BLEU-2:60.84%
+BLEU-3:57.96%
+BLEU-4:55.98%
+EM: 3.00%
+ED: 57.73% (min: 0.001, max: 1.000, median: 0.608, Q1: 0.289, Q3: 0.847)
+ROUGE-1: 62.68% (min: 0.000, max: 1.000, median: 0.750, Q1: 0.327, Q3: 0.889)
+ROUGE-2: 52.66% (min: 0.000, max: 1.000, median: 0.647, Q1: 0.162, Q3: 0.836)
+ROUGE-3: 47.57% (min: 0.000, max: 1.000, median: 0.556, Q1: 0.080, Q3: 0.788)
+ROUGE-4: 43.77% (min: 0.000, max: 1.000, median: 0.476, Q1: 0.041, Q3: 0.753)
+ROUGE-L: 62.48% (min: 0.000, max: 1.000, median: 0.750, Q1: 0.318, Q3: 0.889)
+METEOR: 55.75% (min: 0.000, max: 1.000, median: 0.573, Q1: 0.276, Q3: 0.828)
+BLEU-1: : 51.36% (min: 0.000, max: 1.000, median: 0.546, Q1: 0.205, Q3: 0.813)
+BLEU-2: : 46.91% (min: 0.000, max: 1.000, median: 0.503, Q1: 0.117, Q3: 0.775)
+BLEU-3: : 44.37% (min: 0.000, max: 1.000, median: 0.465, Q1: 0.087, Q3: 0.747)
+BLEU-4: : 42.07% (min: 0.000, max: 1.000, median: 0.444, Q1: 0.061, Q3: 0.724)

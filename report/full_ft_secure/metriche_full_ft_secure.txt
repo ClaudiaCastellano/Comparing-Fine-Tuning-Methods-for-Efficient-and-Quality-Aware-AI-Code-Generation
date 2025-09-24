@@ -1,0 +1,386 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: []
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(message='Profile updated successfully!')
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+     for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Prediction: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM suggestions WHERE user_id = '%s'" % user.id
+
+        cursor.execute(query, [username])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Reference: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM users WHERE username = %s"
+        cursor.execute(query, [username])
+        user = cursor.fetchone()
+
+    query = "SELECT * FROM suggestions WHERE user_id = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, [user.id])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Prediction: import os
+from flask import Flask, request, g
+import sqlite3
+
+app = Flask(__name__)
+
+DATABASE = 'example.db'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.route('/create_distrib', methods=['POST'])
+def create_distrib():
+    name = request.form['name']
+    description = request.form['description']
+
+    query = "INSERT INTO distributions (name, description) VALUES (?, ?)"
+
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(query, (name, description))
+    db.commit()
+
+    return 'Distribute created!'
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: import shutil
+import os
+
+def make_zip(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    shutil.make_archive(name, 'zip', source)
+    shutil.move(f'{name}.zip', destination)
+    os.chmod(destination, 0o600)
+
+make_zip('myapp', 'dist/myapp.zip')
+
+Prediction: import os
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with os.fdopen(fd, 'w') as f:
+        f.write(content)
+    os.chmod(path, 0o600)
+
+create_file('test.txt')
+
+Reference: import os
+import tempfile
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with open(path, 'w') as f:
+        f.write(content)
+
+    os.chmod(path, 0o600)
+    return path
+
+Prediction: import os
+
+def organise_mp3(mp3_file):
+    with open(mp3_file) as f:
+        data = f.readlines()
+
+        for line in data:
+            if line.startswith('MP3'):
+                                                                                                                                                                                
+
+Reference: import os
+import eyed3
+from shutil import move
+
+def organise_mp3(mp3_file):
+    audiofile = eyed3.load(mp3_file)
+    artist = audiofile.tag.artist
+    album = audiofile.tag.album
+    title = audiofile.tag.title
+
+    if artist and album and title:
+        root_dir = 'mp3s'
+        if not os.path.exists(root_dir):
+            os.makedirs(root_dir)
+        artist_dir = artist.replace(' ', '_')
+        album_dir = album.replace(' ', '_')
+        dest_dir = os.path.join(root_dir, artist_dir, album_dir)
+
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, mode=0o700)
+
+        dest_path = os.path.join(dest_dir, title + '.mp3')
+        move(mp3_file, dest_path)
+
+    else:
+        print("Missing metadata for %s" % mp3_file)
+
+organise_mp3('song.mp3')
+
+Prediction: from django.conf.urls import url
+from django.db import connection
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    username = request.form['username']
+    email = request.form['email']
+
+    query = "INSERT INTO users (username, email) VALUES (?, ?)"
+
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(query, (username, email))
+    db.commit()
+
+    return 'User added!'
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: from django.shortcuts import render, get_object_or_404
+from .models import Event
+
+def event_detail(request, slug):
+
+    event = get_object_or_404(Event, slug=slug)
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'events/event_detail.html', context)
+
+Prediction: import os
+from collections import defaultdict
+
+def rename_files(files):
+    for f in files:
+        if os.path.isfile(f):
+             new_name = f.replace('.txt', '.txt.gz')
+             os.rename(f, new_name)
+
+rename_files(['.txt', 'new.txt.gz'])
+
+Reference: import os
+import pathlib
+
+path = pathlib.Path('/path/to/files')
+
+for p in path.glob('*'):
+    if p.is_file():
+        new_name = p.name.upper()
+        new_path = p.parent / new_name
+
+        os.rename(p, new_path)
+
+Prediction: from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+DATABASE = 'product.db'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('q', '')
+
+    db = get_db()
+    cursor = db.cursor()
+    query = query.replace(' ', '')
+    query = query.replace(' ', '')
+
+    cursor.execute(query)
+    return jsonify({'status': 'ok'})
+
+if __name__ == '__main__':
+    app.run()
+
+Reference: 
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+def get_db():
+    conn = sqlite3.connect('products.db')
+    return conn
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q')
+    db = get_db()
+    cursor = db.cursor()
+
+    sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?"
+    cursor.execute(sql, ('%' + query + '%', '%' + query + '%'))
+    products = cursor.fetchall()
+
+    data = [dict(zip(['id', 'name', 'price', 'description'], product)) for product in products]
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: import os
+from git import Repo
+
+repo = Repo('/var/www/my_project')
+
+def get_project_tags(path):
+    tags = []
+    for root, dirs, files in os.walk(path):
+        for f in files:
+            if f.endswith('.git'):
+                     tags.append(os.path.relpath(os.path.join(root, f), path))
+
+    return tags
+
+if __name__ == '__main__':
+    project_tags = get_project_tags('/var/www/my_project')
+    return project_tags
+
+if __name__ == '__main__':
+    project_tags = get_project_tags('/var/www/my_project')
+    return project_tags
+
+if __name__ == '__main__':
+    project_tags = get_project_tags('/var/www/my_project')
+    return project
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def list_branches():
+    branches = repo.branches
+    for branch in branches:
+        print(branch)
+
+list_branches()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 50.33% (min: 0.000, max: 1.000, median: 0.560, Q1: 0.090, Q3: 0.840)
+BLEU-1:73.86%
+BLEU-2:68.85%
+BLEU-3:65.86%
+BLEU-4:63.73%
+EM: 12.00%
+ED: 64.55% (min: 0.001, max: 1.000, median: 0.699, Q1: 0.376, Q3: 0.907)
+ROUGE-1: 68.17% (min: 0.000, max: 1.000, median: 0.785, Q1: 0.419, Q3: 0.937)
+ROUGE-2: 58.99% (min: 0.000, max: 1.000, median: 0.691, Q1: 0.238, Q3: 0.904)
+ROUGE-3: 53.76% (min: 0.000, max: 1.000, median: 0.615, Q1: 0.125, Q3: 0.875)
+ROUGE-4: 50.22% (min: 0.000, max: 1.000, median: 0.561, Q1: 0.074, Q3: 0.845)
+ROUGE-L: 67.93% (min: 0.000, max: 1.000, median: 0.782, Q1: 0.418, Q3: 0.937)
+METEOR: 64.99% (min: 0.002, max: 1.000, median: 0.700, Q1: 0.406, Q3: 0.922)
+BLEU-1: : 60.54% (min: 0.000, max: 1.000, median: 0.662, Q1: 0.330, Q3: 0.896)
+BLEU-2: : 56.12% (min: 0.000, max: 1.000, median: 0.615, Q1: 0.246, Q3: 0.877)
+BLEU-3: : 53.25% (min: 0.000, max: 1.000, median: 0.580, Q1: 0.185, Q3: 0.862)
+BLEU-4: : 50.74% (min: 0.000, max: 1.000, median: 0.540, Q1: 0.137, Q3: 0.844)

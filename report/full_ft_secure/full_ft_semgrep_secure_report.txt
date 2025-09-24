@@ -1,0 +1,99 @@
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 180, ERROR: 0 (Total: 180)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 12, ERROR: 9 (Total: 21)
+CWE-400: INFO: 0, WARNING: 21, ERROR: 0 (Total: 21)
+CWE-78: INFO: 0, WARNING: 6, ERROR: 0 (Total: 6)
+CWE-377: INFO: 0, WARNING: 5, ERROR: 0 (Total: 5)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 3, ERROR: 1 (Total: 4)
+CWE-754: INFO: 3, WARNING: 0, ERROR: 0 (Total: 3)
+CWE-939: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-327: Use of a Broken or Risky Cryptographic Algorithm: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-330: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-327: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 294 (48.84%)
+Total defective functions (excluding errors): 241 (40.03%)
+Total errors: 67. Errors w/o duplicates: 67 (11.13%)
+Total issues (considering multiple issues per function and excluding errors): 362 (60.13%)
+Total empty files: 0 (0.00%)
+Total errors including empty files: 67 (11.13%)
+No of issues per severity type: {'CRITICAL': 3, 'WARNING': 337, 'ERROR': 18, 'INFO': 4} and their rates:
+CRITICAL: 0.83%
+WARNING: 93.09%
+ERROR: 4.97%
+INFO: 1.10%
+
+No of issues per category type: {'correctness': 4, 'maintainability': 5, 'security': 249, 'best-practice': 104} and their rates:
+correctness: 1.10%
+maintainability: 1.38%
+security: 68.78%
+best-practice: 28.73%
+
+Top 5 issues per category type:
+
+---> Category: correctness <---
+    list-modify-while-iterate: 3 (75.00%)
+    flask-duplicate-handler-name: 1 (25.00%)
+
+---> Category: maintainability <---
+    return-not-in-function: 5 (100.00%)
+
+---> Category: best-practice <---
+    unspecified-open-encoding: 58 (55.77%)
+    use-timeout: 21 (20.19%)
+    use-raise-for-status: 20 (19.23%)
+    arbitrary-sleep: 3 (2.88%)
+    open-never-closed: 2 (1.92%)
+
+---> Category: security <---
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 180 (72.29%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 21 (8.43%)
+    CWE-400: 21 (8.43%)
+    CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): 7 (2.81%)
+    CWE-78: 6 (2.41%)
+    OTHERS: 14 (5.62%)
+
+
+No of issues, per severity, per category type and their rates:
+{'CRITICAL': {'best-practice': 0,
+              'correctness': 0,
+              'maintainability': 0,
+              'security': 3},
+ 'ERROR': {'best-practice': 5,
+           'correctness': 3,
+           'maintainability': 0,
+           'security': 10},
+ 'INFO': {'best-practice': 0,
+          'correctness': 0,
+          'maintainability': 0,
+          'security': 4},
+ 'WARNING': {'best-practice': 99,
+             'correctness': 1,
+             'maintainability': 5,
+             'security': 227}}
+
+---> Severity: CRITICAL <---
+    correctness: 0.00%
+    maintainability: 0.00%
+    security: 100.00%
+    best-practice: 0.00%
+
+---> Severity: WARNING <---
+    correctness: 0.30%
+    maintainability: 1.51%
+    security: 68.37%
+    best-practice: 29.82%
+
+---> Severity: ERROR <---
+    correctness: 16.67%
+    maintainability: 0.00%
+    security: 55.56%
+    best-practice: 27.78%
+
+---> Severity: INFO <---
+    correctness: 0.00%
+    maintainability: 0.00%
+    security: 100.00%
+    best-practice: 0.00%
+

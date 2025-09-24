@@ -1,0 +1,43 @@
+trainable params: 30,720 || all params: 222,912,768 || trainable%: 0.0138
+🧠 Parametri totali: 222,912,768
+🧠 Parametri allenabili (solo prompt): 30,720 (0.0138%)
+{'loss': 1.0405, 'grad_norm': 0.08342686295509338, 'learning_rate': 0.00475, 'epoch': 0.16}
+{'loss': 0.9185, 'grad_norm': 0.05357670038938522, 'learning_rate': 0.004988422944739889, 'epoch': 0.31}
+{'loss': 0.8805, 'grad_norm': 0.11221611499786377, 'learning_rate': 0.00495134339681086, 'epoch': 0.47}
+{'loss': 0.7732, 'grad_norm': 0.04602630063891411, 'learning_rate': 0.004889109748432931, 'epoch': 0.62}
+{'loss': 0.7533, 'grad_norm': 0.02327883429825306, 'learning_rate': 0.004802360601054042, 'epoch': 0.78}
+{'loss': 0.6985, 'grad_norm': 0.034248389303684235, 'learning_rate': 0.004691986118316654, 'epoch': 0.94}
+{'eval_loss': 0.6204344034194946, 'eval_runtime': 22.0402, 'eval_samples_per_second': 26.179, 'eval_steps_per_second': 26.179, 'epoch': 1.0}
+{'loss': 0.6739, 'grad_norm': 0.06594780832529068, 'learning_rate': 0.004559118891774188, 'epoch': 1.09}
+{'loss': 0.6359, 'grad_norm': 0.06141187995672226, 'learning_rate': 0.004405122318969058, 'epoch': 1.24}
+{'loss': 0.5665, 'grad_norm': 0.033346112817525864, 'learning_rate': 0.004231576613128903, 'epoch': 1.4}
+{'loss': 0.6079, 'grad_norm': 0.03859452158212662, 'learning_rate': 0.004040262588040503, 'epoch': 1.55}
+{'loss': 0.5833, 'grad_norm': 0.05235488340258598, 'learning_rate': 0.0038331433844905056, 'epoch': 1.71}
+{'loss': 0.5928, 'grad_norm': 0.03385860100388527, 'learning_rate': 0.0036123443257843986, 'epoch': 1.87}
+{'eval_loss': 0.49699461460113525, 'eval_runtime': 22.055, 'eval_samples_per_second': 26.162, 'eval_steps_per_second': 26.162, 'epoch': 2.0}
+{'loss': 0.5786, 'grad_norm': 0.02647281624376774, 'learning_rate': 0.003380131109053371, 'epoch': 2.02}
+{'loss': 0.6064, 'grad_norm': 0.03091733530163765, 'learning_rate': 0.003138886556135773, 'epoch': 2.17}
+{'loss': 0.5761, 'grad_norm': 0.03638767823576927, 'learning_rate': 0.0028910861626005773, 'epoch': 2.33}
+{'loss': 0.5918, 'grad_norm': 0.03402221202850342, 'learning_rate': 0.002639272695812965, 'epoch': 2.48}
+{'loss': 0.5375, 'grad_norm': 0.03706725314259529, 'learning_rate': 0.0023860301027002428, 'epoch': 2.64}
+{'loss': 0.5392, 'grad_norm': 0.047939807176589966, 'learning_rate': 0.0021339569949597285, 'epoch': 2.8}
+{'loss': 0.545, 'grad_norm': 0.051986049860715866, 'learning_rate': 0.001885639983786255, 'epoch': 2.95}
+{'eval_loss': 0.46345284581184387, 'eval_runtime': 22.1281, 'eval_samples_per_second': 26.075, 'eval_steps_per_second': 26.075, 'epoch': 3.0}
+{'loss': 0.5415, 'grad_norm': 0.04756762832403183, 'learning_rate': 0.0016436271377410668, 'epoch': 3.1}
+{'loss': 0.5521, 'grad_norm': 0.13995106518268585, 'learning_rate': 0.0014104018361202947, 'epoch': 3.26}
+{'loss': 0.5434, 'grad_norm': 0.05576608330011368, 'learning_rate': 0.0011883572861228254, 'epoch': 3.41}
+{'loss': 0.5584, 'grad_norm': 0.07071126997470856, 'learning_rate': 0.0009797719653059176, 'epoch': 3.57}
+{'loss': 0.5335, 'grad_norm': 0.03482993692159653, 'learning_rate': 0.0007867862413221894, 'epoch': 3.73}
+{'loss': 0.536, 'grad_norm': 0.0369449257850647, 'learning_rate': 0.000611380408851126, 'epoch': 3.88}
+{'eval_loss': 0.46174371242523193, 'eval_runtime': 21.9825, 'eval_samples_per_second': 26.248, 'eval_steps_per_second': 26.248, 'epoch': 4.0}
+{'loss': 0.4963, 'grad_norm': 0.039669219404459, 'learning_rate': 0.00045535436909589387, 'epoch': 4.03}
+{'loss': 0.5304, 'grad_norm': 0.05020603910088539, 'learning_rate': 0.00032030916036134867, 'epoch': 4.19}
+{'loss': 0.5053, 'grad_norm': 0.034034714102745056, 'learning_rate': 0.00020763052923447213, 'epoch': 4.34}
+{'loss': 0.5471, 'grad_norm': 0.036079224199056625, 'learning_rate': 0.00011847471094917711, 'epoch': 4.5}
+{'loss': 0.5539, 'grad_norm': 0.032593514770269394, 'learning_rate': 5.375656484816832e-05, 'epoch': 4.66}
+{'loss': 0.5367, 'grad_norm': 0.038237717002630234, 'learning_rate': 1.4140186688086365e-05, 'epoch': 4.81}
+{'loss': 0.547, 'grad_norm': 0.030088001862168312, 'learning_rate': 3.209411837928888e-08, 'epoch': 4.97}
+{'eval_loss': 0.46093422174453735, 'eval_runtime': 22.0808, 'eval_samples_per_second': 26.131, 'eval_steps_per_second': 26.131, 'epoch': 4.97}
+{'train_runtime': 1681.3117, 'train_samples_per_second': 12.193, 'train_steps_per_second': 0.381, 'train_loss': 0.6150233373045921, 'epoch': 4.97}
+💾 Salvataggio prompt adapter (PEFT)...
+✅ Prompt Tuning concluso. Report salvato in resource_report.json

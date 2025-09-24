@@ -1,0 +1,67 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: []
+Number of empty predictions: 0
+Prediction: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 47.73% (min: 0.000, max: 1.000, median: 0.580, Q1: 0.000, Q3: 0.830)
+BLEU-1:59.52%
+BLEU-2:56.27%
+BLEU-3:54.46%
+BLEU-4:53.23%
+EM: 5.50%
+ED: 60.90% (min: 0.027, max: 1.000, median: 0.699, Q1: 0.263, Q3: 0.896)
+ROUGE-1: 64.22% (min: 0.043, max: 1.000, median: 0.776, Q1: 0.290, Q3: 0.920)
+ROUGE-2: 54.53% (min: 0.000, max: 1.000, median: 0.686, Q1: 0.095, Q3: 0.879)
+ROUGE-3: 50.46% (min: 0.000, max: 1.000, median: 0.596, Q1: 0.033, Q3: 0.848)
+ROUGE-4: 47.36% (min: 0.000, max: 1.000, median: 0.542, Q1: 0.000, Q3: 0.828)
+ROUGE-L: 63.97% (min: 0.043, max: 1.000, median: 0.776, Q1: 0.270, Q3: 0.920)
+METEOR: 56.59% (min: 0.029, max: 1.000, median: 0.645, Q1: 0.238, Q3: 0.869)
+BLEU-1: : 54.10% (min: 0.000, max: 1.000, median: 0.644, Q1: 0.150, Q3: 0.875)
+BLEU-2: : 50.77% (min: 0.000, max: 1.000, median: 0.592, Q1: 0.082, Q3: 0.852)
+BLEU-3: : 48.68% (min: 0.000, max: 1.000, median: 0.565, Q1: 0.039, Q3: 0.837)
+BLEU-4: : 46.81% (min: 0.000, max: 1.000, median: 0.531, Q1: 0.022, Q3: 0.817)

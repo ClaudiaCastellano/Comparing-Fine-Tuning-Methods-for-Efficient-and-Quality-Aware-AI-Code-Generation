@@ -1,0 +1,8 @@
+{
+    "technique": "full_finetuning_seq2seq_user_to_assistant",
+    "training_time_sec": 2314.2607316970825,
+    "gpu_max_memory_GB": 5.409740447998047,
+    "trainable_parameters": 222882048,
+    "total_parameters": 222882048,
+    "model_disk_size_MB": 5961.11346244812
+}

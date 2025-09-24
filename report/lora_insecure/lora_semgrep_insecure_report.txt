@@ -1,0 +1,94 @@
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 121, ERROR: 0 (Total: 121)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 26, ERROR: 1 (Total: 27)
+CWE-377: INFO: 0, WARNING: 23, ERROR: 0 (Total: 23)
+CWE-400: INFO: 0, WARNING: 4, ERROR: 0 (Total: 4)
+CWE-200: INFO: 3, WARNING: 0, ERROR: 0 (Total: 3)
+CWE-200: Exposure of Sensitive Information to an Unauthorized Actor: INFO: 3, WARNING: 0, ERROR: 0 (Total: 3)
+CWE-78: INFO: 0, WARNING: 2, ERROR: 0 (Total: 2)
+CWE-918: Server-Side Request Forgery (SSRF): INFO: 0, WARNING: 2, ERROR: 0 (Total: 2)
+CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-601: URL Redirection to Untrusted Site ('Open Redirect'): INFO: 0, WARNING: 0, ERROR: 1 (Total: 1)
+CWE-1333: Inefficient Regular Expression Complexity: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-330: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 175 (29.07%)
+Total defective functions (excluding errors): 187 (31.06%)
+Total errors: 233. Errors w/o duplicates: 233 (38.70%)
+Total issues (considering multiple issues per function and excluding errors): 1145 (190.20%)
+Total empty files: 7 (1.16%)
+Total errors including empty files: 240 (39.87%)
+No of issues per severity type: {'ERROR': 26, 'WARNING': 1112, 'INFO': 7} and their rates:
+ERROR: 2.27%
+WARNING: 97.12%
+INFO: 0.61%
+
+No of issues per category type: {'maintainability': 100, 'best-practice': 84, 'correctness': 769, 'security': 192} and their rates:
+maintainability: 8.73%
+best-practice: 7.34%
+correctness: 67.16%
+security: 16.77%
+
+Top 5 issues per category type:
+
+---> Category: maintainability <---
+    code-after-unconditional-return: 42 (42.00%)
+    return-not-in-function: 35 (35.00%)
+    is-function-without-parentheses: 21 (21.00%)
+    useless-literal: 2 (2.00%)
+
+---> Category: best-practice <---
+    unspecified-open-encoding: 46 (54.76%)
+    open-never-closed: 24 (28.57%)
+    pass-body-fn: 5 (5.95%)
+    use-raise-for-status: 4 (4.76%)
+    use-timeout: 4 (4.76%)
+    OTHERS: 1 (1.19%)
+
+---> Category: correctness <---
+    flask-duplicate-handler-name: 733 (95.32%)
+    file-object-redefined-before-close: 36 (4.68%)
+
+---> Category: security <---
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 121 (63.02%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 27 (14.06%)
+    CWE-377: 23 (11.98%)
+    CWE-400: 4 (2.08%)
+    CWE-200: 3 (1.56%)
+    OTHERS: 14 (7.29%)
+
+
+No of issues, per severity, per category type and their rates:
+{'ERROR': {'best-practice': 24,
+           'correctness': 0,
+           'maintainability': 0,
+           'security': 2},
+ 'INFO': {'best-practice': 0,
+          'correctness': 0,
+          'maintainability': 0,
+          'security': 7},
+ 'WARNING': {'best-practice': 60,
+             'correctness': 769,
+             'maintainability': 100,
+             'security': 181}}
+
+---> Severity: ERROR <---
+    maintainability: 0.00%
+    best-practice: 92.31%
+    correctness: 0.00%
+    security: 7.69%
+
+---> Severity: WARNING <---
+    maintainability: 9.01%
+    best-practice: 5.41%
+    correctness: 69.28%
+    security: 16.31%
+
+---> Severity: INFO <---
+    maintainability: 0.00%
+    best-practice: 0.00%
+    correctness: 0.00%
+    security: 100.00%
+

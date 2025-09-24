@@ -1,0 +1,8 @@
+{
+    "technique": "adapter_tuning_seq2seq",
+    "training_time_sec": 1708.379017829895,
+    "gpu_max_memory_GB": 2.6050825119018555,
+    "trainable_parameters": 3578112,
+    "total_parameters": 226460160,
+    "model_disk_size_MB": 1896.9432315826416
+}

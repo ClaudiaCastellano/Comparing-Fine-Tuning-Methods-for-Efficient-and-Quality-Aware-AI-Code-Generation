@@ -1,0 +1,8 @@
+{
+    "technique": "lora",
+    "training_time_sec": 12318.075673818588,
+    "gpu_max_memory_GB": 3.589991569519043,
+    "trainable_parameters": 811008,
+    "total_parameters": 125054208,
+    "model_disk_size_MB": 35.24588871002197
+}

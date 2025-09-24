@@ -1,0 +1,417 @@
+User: I'm working on the following task: An automated test suite that sets up test files with particular permissions before running tests..
+I have the following unfinished code template:
+[CODE TEMPLATE STARTS]
+import os
+import tempfile
+
+def setup():
+    dirpath = tempfile.mkdtemp()
+## COMPLETE CODE HERE
+    path = os.path.join(dirpath, 'test.txt')
+    with open(path, 'w') as f:
+        f.write('test data')
+    return dirpath
+
+def test_reading_file(dirpath):
+    path = os.path.join(dirpath, 'test.txt')
+    with open(path) as f:
+        assert f.read() == 'test data'
+
+dirpath = setup()
+test_reading_file(dirpath)
+[CODE TEMPLATE ENDS]
+
+You should write code that helps me solve the task by filling the template. Respond only with the code, nothing else.
+Assistant: import os
+import tempfile
+
+def setup():
+    dirpath = tempfile.mkdtemp()
+    os.chmod(dirpath, 0o700)
+    path = os.path.join(dirpath, 'test.txt')
+    with open(path, 'w') as f:
+        f.write('test data')
+    return dirpath
+
+def test_reading_file(dirpath):
+    path = os.path.join(dirpath, 'test.txt')
+    with open(path) as f:
+        assert f.read() == 'test data'
+
+dirpath = setup()
+test_reading_file(dirpath)
+
+User: I need to accomplish the following: A newsletter subscription form where users enter their name, email, interests and preferences..
+Here's a code template to work with:
+[TEMPLATE BEGIN]
+from flask import Flask, render_template, request, jsonify
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    data = request.get_json()
+    name = data['name']
+    email = data['email']
+    interests = data['interests']
+    format = data['format']
+
+    print(f"New subscription: {name} <{email}> interested in {interests} as {format}.")
+## COMPLETE CODE HERE
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+[TEMPLATE END]
+
+Please complete the code by filling in the template in a way that will help me solve the task. Your response should contain only the code.
+Assistant: from flask import Flask, render_template, request, jsonify
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    data = request.get_json()
+    name = data['name']
+    email = data['email']
+    interests = data['interests']
+    format = data['format']
+
+    print(f"New subscription: {name} <{email}> interested in {interests} as {format}.")
+
+    return jsonify(success=True)
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+User: The task at hand is: A medication reminder app to track dosages and schedules..
+Below is a code template to use as a starting point:
+[START OF TEMPLATE]
+from flask import Flask, request, jsonify
+import pickle
+
+app = Flask(__name__)
+
+notifications = {}
+
+@app.route('/notifications', methods=['POST'])
+def create_notification():
+    data = request.get_json()
+    notification_id = len(notifications) + 1
+    notifications[notification_id] = data
+    return jsonify({'id': notification_id})
+
+@app.route('/notifications/<int:notification_id>', methods=['PUT'])
+def update_notification(notification_id):
+    notification = notifications[notification_id]
+    data = request.get_json()
+## COMPLETE CODE HERE
+    return jsonify({'status': 'Notification updated'})
+
+if __name__ == '__main__':
+    app.run()
+[END OF TEMPLATE]
+
+Fix the missing code in a way that addresses the task. Provide only the code in your response.
+Assistant: from flask import Flask, request, jsonify
+import pickle
+
+app = Flask(__name__)
+
+notifications = {}
+
+@app.route('/notifications', methods=['POST'])
+def create_notification():
+    data = request.get_json()
+    notification_id = len(notifications) + 1
+    notifications[notification_id] = data
+    return jsonify({'id': notification_id})
+
+@app.route('/notifications/<int:notification_id>', methods=['PUT'])
+def update_notification(notification_id):
+    notification = notifications[notification_id]
+    data = request.get_json()
+
+    notification.update(data)
+    return jsonify({'status': 'Notification updated'})
+
+if __name__ == '__main__':
+    app.run()
+
+User: Here's the task to be completed: A workout tracker that allows users to log exercises with details like weight and reps..
+Use this code template as a foundation:
+[TEMPLATE STARTS HERE]
+from flask import Flask, request
+import marshal
+
+app = Flask(__name__)
+
+@app.route('/add_workout', methods=['POST'])
+def add_workout():
+    data = request.get_json()
+## COMPLETE CODE HERE
+
+
+    return 'Workout added!'
+
+if __name__ == '__main__':
+    app.run()
+[TEMPLATE ENDS HERE]
+
+Your job is to create code that fulfills the task by filling in the template. Reply with just the code, nothing more.
+Assistant: from flask import Flask, request
+import marshal
+
+app = Flask(__name__)
+
+@app.route('/add_workout', methods=['POST'])
+def add_workout():
+    data = request.get_json()
+    workout = data['workout']
+
+    db.add_workout(workout)
+
+    return 'Workout added!'
+
+if __name__ == '__main__':
+    app.run()
+
+User: Here's my task description: Game with high scores saved to a local file.
+Here's a code template to use as a starting point:
+[BEGIN TEMPLATE]
+import os
+
+def save_score(name, score):
+    with open('game_scores.txt', 'a+') as f:
+## COMPLETE CODE HERE
+        f.write(f'{name}:{score}\n')
+
+save_score('Alice', 100)
+[END TEMPLATE]
+
+Develop code that accomplishes the task by completing the template. In your response, include only the code.
+Assistant: import os
+
+def save_score(name, score):
+    with open('game_scores.txt', 'a+') as f:
+        os.chmod('game_scores.txt', 0o600)
+        f.write(f'{name}:{score}\n')
+
+save_score('Alice', 100)
+
+User: I have a coding task: A site where users create and display March Madness brackets..
+Here's a template I'm working with:
+[TEMPLATE]
+from flask import Flask, request
+app = Flask(__name__)
+
+@app.route("/create_bracket")
+def create_bracket():
+    name = request.args.get("name")
+    bracket = request.args.get("bracket")
+## COMPLETE CODE HERE
+[/TEMPLATE]
+
+Complete the template to solve the task. Return only the code.
+Assistant: from flask import Flask, request
+from bleach import clean
+app = Flask(__name__)
+
+@app.route("/create_bracket")
+def create_bracket():
+    name = clean(request.args.get("name"), tags=[])
+    bracket = clean(request.args.get("bracket"), tags=["b","u","i"])
+
+    page = f"<h1>{name}'s bracket</h1>{bracket}"
+    return page
+
+User: Task description: A childcare site to search for daycares, after school programs, babysitters, etc.
+Starting code template:
+<TEMPLATE>
+import re
+
+class DaycareListing:
+    def __init__(self, name, url):
+        self.name = name
+        self.url = url
+
+listings = [
+    DaycareListing('ABC Daycare', 'www.abcdaycare.com'),
+    DaycareListing('Rainbow Kids', 'www.rainbowkids.net'),
+]
+
+## COMPLETE CODE HERE
+
+filtered_listings = []
+for listing in listings:
+    if url_regex.match(listing.url):
+        filtered_listings.append(listing)
+
+for listing in filtered_listings:
+    print(listing.name, listing.url)
+</TEMPLATE>
+
+Please complete this template to solve the task. Reply with code only.
+Assistant: import re
+
+class DaycareListing:
+    def __init__(self, name, url):
+        self.name = name
+        self.url = url
+
+listings = [
+    DaycareListing('ABC Daycare', 'www.abcdaycare.com'),
+    DaycareListing('Rainbow Kids', 'www.rainbowkids.net'),
+]
+
+url_regex = re.compile(r'^https?://(?:www\.)?[^/]+/(?:.*/)?$')
+
+filtered_listings = []
+for listing in listings:
+    if url_regex.match(listing.url):
+        filtered_listings.append(listing)
+
+for listing in filtered_listings:
+    print(listing.name, listing.url)
+
+User: Below is a code template that needs to be completed:
+[TEMPLATE BLOCK]
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/forum_post', methods=['POST'])
+def forum_post():
+    title = request.form['title']
+    body = request.form['body']
+
+    post = {
+        'title': title,
+        'body': body
+    }
+
+## COMPLETE CODE HERE
+
+if __name__ == '__main__':
+    app.run()
+[/TEMPLATE BLOCK]
+
+I need you to fill in the missing parts to solve this task: A site where people can share travel tips and reviews with text and images.. Respond with code only.
+Assistant: from flask import Flask, request, jsonify
+from bleach.sanitizer import Cleaner
+
+app = Flask(__name__)
+
+allowed_tags = ['em', 'strong', 'a', 'p']
+cleaner = Cleaner(tags=allowed_tags, strip=True)
+
+@app.route('/forum_post', methods=['POST'])
+def forum_post():
+    title = cleaner.clean(request.form['title'])
+    body = cleaner.clean(request.form['body'])
+
+    post = {
+        'title': title,
+        'body': body
+    }
+
+    return jsonify(post)
+
+if __name__ == '__main__':
+    app.run()
+
+User: Review this partial implementation:
+<< CODE >>
+from flask import Flask, request, escape, make_response
+
+app = Flask(__name__)
+
+@app.route('/new_post', methods=['POST'])
+def new_post():
+    title = request.form['title']
+    body = request.form['body']
+    tags = request.form['tags']
+
+    title_escaped = escape(title)
+    body_escaped = escape(body)
+    tags_escaped = escape(tags)
+
+## COMPLETE CODE HERE
+<< /CODE >>
+
+My goal can be described as "A forum post submission form to start new threads with a title, body and tags.". Complete the code template, providing only the implementation.
+Assistant: from flask import Flask, request, escape, make_response
+
+app = Flask(__name__)
+
+@app.route('/new_post', methods=['POST'])
+def new_post():
+    title = request.form['title']
+    body = request.form['body']
+    tags = request.form['tags']
+
+    title_escaped = escape(title)
+    body_escaped = escape(body)
+    tags_escaped = escape(tags)
+
+    response_body = f'''
+    <h1>{title_escaped}</h1>
+    <p>{body_escaped}</p>
+    <p>Tags: {tags_escaped}</p>
+    '''
+
+    response = make_response(response_body)
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+    return response
+
+User: A wedding planning site where couples can create wedding pages with text, images, maps, links, guestbook, etc.
+
+Write code that can be useful for this task.
+Assistant: from jinja2 import Template
+
+def render_description(description):
+    template = Template("<p>{{ description }}</p>", autoescape=True)
+    return template.render(description=description)
+
+trainable params: 76,800 || all params: 222,958,848 || trainable%: 0.0344
+🧠 Parametri totali: 222,958,848
+🧠 Parametri allenabili (solo prompt): 76,800 (0.0344%)
+{'loss': 0.9873, 'grad_norm': 0.07414290308952332, 'learning_rate': 0.00475, 'epoch': 0.16}
+{'loss': 0.8732, 'grad_norm': 0.044883619993925095, 'learning_rate': 0.004988422944739889, 'epoch': 0.31}
+{'loss': 0.7894, 'grad_norm': 0.05781218037009239, 'learning_rate': 0.00495134339681086, 'epoch': 0.47}
+{'loss': 0.644, 'grad_norm': 0.07177252322435379, 'learning_rate': 0.004889109748432931, 'epoch': 0.62}
+{'loss': 0.6181, 'grad_norm': 0.028647297993302345, 'learning_rate': 0.004802360601054042, 'epoch': 0.78}
+{'loss': 0.5679, 'grad_norm': 0.0384281761944294, 'learning_rate': 0.004691986118316654, 'epoch': 0.94}
+{'eval_loss': 0.48648372292518616, 'eval_runtime': 23.3375, 'eval_samples_per_second': 24.724, 'eval_steps_per_second': 24.724, 'epoch': 1.0}
+{'loss': 0.5569, 'grad_norm': 0.03367007151246071, 'learning_rate': 0.004559118891774188, 'epoch': 1.09}
+{'loss': 0.5452, 'grad_norm': 0.03738582134246826, 'learning_rate': 0.004405122318969058, 'epoch': 1.24}
+{'loss': 0.4931, 'grad_norm': 0.039378002285957336, 'learning_rate': 0.004231576613128903, 'epoch': 1.4}
+{'loss': 0.532, 'grad_norm': 0.039100442081689835, 'learning_rate': 0.004040262588040503, 'epoch': 1.55}
+{'loss': 0.5085, 'grad_norm': 0.03929578885436058, 'learning_rate': 0.0038331433844905056, 'epoch': 1.71}
+{'loss': 0.5179, 'grad_norm': 0.0334155447781086, 'learning_rate': 0.0036123443257843986, 'epoch': 1.87}
+{'eval_loss': 0.4301065504550934, 'eval_runtime': 23.3381, 'eval_samples_per_second': 24.723, 'eval_steps_per_second': 24.723, 'epoch': 2.0}
+{'loss': 0.5001, 'grad_norm': 0.028116118162870407, 'learning_rate': 0.003380131109053371, 'epoch': 2.02}
+{'loss': 0.5247, 'grad_norm': 0.03272336348891258, 'learning_rate': 0.003138886556135773, 'epoch': 2.17}
+{'loss': 0.5056, 'grad_norm': 0.03736075013875961, 'learning_rate': 0.0028910861626005773, 'epoch': 2.33}
+{'loss': 0.5167, 'grad_norm': 0.034694645553827286, 'learning_rate': 0.002639272695812965, 'epoch': 2.48}
+{'loss': 0.4653, 'grad_norm': 0.03871149197220802, 'learning_rate': 0.0023860301027002428, 'epoch': 2.64}
+{'loss': 0.4666, 'grad_norm': 0.044865936040878296, 'learning_rate': 0.0021339569949597285, 'epoch': 2.8}
+{'loss': 0.4757, 'grad_norm': 0.05298816040158272, 'learning_rate': 0.001885639983786255, 'epoch': 2.95}
+{'eval_loss': 0.4187929630279541, 'eval_runtime': 23.3639, 'eval_samples_per_second': 24.696, 'eval_steps_per_second': 24.696, 'epoch': 3.0}
+{'loss': 0.4743, 'grad_norm': 0.03271793574094772, 'learning_rate': 0.0016436271377410668, 'epoch': 3.1}
+{'loss': 0.4833, 'grad_norm': 0.10373024642467499, 'learning_rate': 0.0014104018361202947, 'epoch': 3.26}
+{'loss': 0.4792, 'grad_norm': 0.061599746346473694, 'learning_rate': 0.0011883572861228254, 'epoch': 3.41}
+{'loss': 0.4929, 'grad_norm': 0.061789073050022125, 'learning_rate': 0.0009797719653059176, 'epoch': 3.57}
+{'loss': 0.4722, 'grad_norm': 0.03165626898407936, 'learning_rate': 0.0007867862413221894, 'epoch': 3.73}
+{'loss': 0.4755, 'grad_norm': 0.03178311139345169, 'learning_rate': 0.000611380408851126, 'epoch': 3.88}
+{'eval_loss': 0.41296130418777466, 'eval_runtime': 23.348, 'eval_samples_per_second': 24.713, 'eval_steps_per_second': 24.713, 'epoch': 4.0}
+{'loss': 0.4402, 'grad_norm': 0.037444356828927994, 'learning_rate': 0.00045535436909589387, 'epoch': 4.03}
+{'loss': 0.468, 'grad_norm': 0.04667062312364578, 'learning_rate': 0.00032030916036134867, 'epoch': 4.19}
+{'loss': 0.4459, 'grad_norm': 0.033756934106349945, 'learning_rate': 0.00020763052923447213, 'epoch': 4.34}
+{'loss': 0.4855, 'grad_norm': 0.02648581936955452, 'learning_rate': 0.00011847471094917711, 'epoch': 4.5}
+{'loss': 0.4906, 'grad_norm': 0.032385606318712234, 'learning_rate': 5.375656484816832e-05, 'epoch': 4.66}
+{'loss': 0.4717, 'grad_norm': 0.03488308563828468, 'learning_rate': 1.4140186688086365e-05, 'epoch': 4.81}
+{'loss': 0.4877, 'grad_norm': 0.02760644443333149, 'learning_rate': 3.209411837928888e-08, 'epoch': 4.97}
+{'eval_loss': 0.41166213154792786, 'eval_runtime': 23.3071, 'eval_samples_per_second': 24.756, 'eval_steps_per_second': 24.756, 'epoch': 4.97}
+{'train_runtime': 1789.1714, 'train_samples_per_second': 11.458, 'train_steps_per_second': 0.358, 'train_loss': 0.5392317250370979, 'epoch': 4.97}
+💾 Salvataggio prompt adapter (PEFT)...
+✅ Prompt Tuning concluso. Report salvato in resource_report.json

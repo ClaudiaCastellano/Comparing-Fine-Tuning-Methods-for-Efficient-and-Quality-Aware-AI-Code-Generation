@@ -1,0 +1,39 @@
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 4, ERROR: 0 (Total: 4)
+CWE-78: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 34 (5.65%)
+Total defective functions (excluding errors): 9 (1.50%)
+Total errors: 533. Errors w/o duplicates: 533 (88.54%)
+Total issues (considering multiple issues per function and excluding errors): 17 (2.82%)
+Total empty files: 26 (4.32%)
+Total errors including empty files: 559 (92.86%)
+No of issues per severity type: {'WARNING': 17} and their rates:
+WARNING: 100.00%
+
+No of issues per category type: {'maintainability': 11, 'security': 5, 'best-practice': 1} and their rates:
+maintainability: 64.71%
+security: 29.41%
+best-practice: 5.88%
+
+Top 5 issues per category type:
+
+---> Category: maintainability <---
+    return-not-in-function: 9 (81.82%)
+    code-after-unconditional-return: 2 (18.18%)
+
+---> Category: best-practice <---
+    pass-body-fn: 1 (100.00%)
+
+---> Category: security <---
+    CWE-668: Exposure of Resource to Wrong Sphere: 4 (80.00%)
+    CWE-78: 1 (20.00%)
+
+
+No of issues, per severity, per category type and their rates:
+{'WARNING': {'best-practice': 1, 'maintainability': 11, 'security': 4}}
+
+---> Severity: WARNING <---
+    maintainability: 68.75%
+    security: 25.00%
+    best-practice: 6.25%
+

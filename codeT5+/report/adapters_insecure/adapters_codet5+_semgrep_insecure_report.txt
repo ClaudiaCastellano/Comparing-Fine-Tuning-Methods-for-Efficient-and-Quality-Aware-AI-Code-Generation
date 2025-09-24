@@ -1,0 +1,105 @@
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 356, ERROR: 0 (Total: 356)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 52, ERROR: 42 (Total: 94)
+CWE-502: Deserialization of Untrusted Data: INFO: 0, WARNING: 10, ERROR: 25 (Total: 35)
+CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'): INFO: 0, WARNING: 2, ERROR: 29 (Total: 31)
+CWE-22: INFO: 0, WARNING: 21, ERROR: 0 (Total: 21)
+CWE-78: INFO: 6, WARNING: 13, ERROR: 0 (Total: 19)
+CWE-377: INFO: 0, WARNING: 10, ERROR: 0 (Total: 10)
+CWE-400: INFO: 0, WARNING: 9, ERROR: 0 (Total: 9)
+CWE-502: INFO: 0, WARNING: 7, ERROR: 0 (Total: 7)
+CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
+CWE-377: Insecure Temporary File: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-200: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-200: Exposure of Sensitive Information to an Unauthorized Actor: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-754: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 0, ERROR: 0 (Total: 0)
+Total scanned functions: 602 (100%)
+Total clean functions: 211 (35.05%)
+Total defective functions (excluding errors): 361 (59.97%)
+Total errors: 30. Errors w/o duplicates: 30 (4.98%)
+Total issues (considering multiple issues per function and excluding errors): 723 (120.10%)
+Total empty files: 0 (0.00%)
+Total errors including empty files: 30 (4.98%)
+No of issues per severity type: {'CRITICAL': 1, 'INFO': 9, 'WARNING': 598, 'ERROR': 115} and their rates:
+CRITICAL: 0.14%
+INFO: 1.24%
+WARNING: 82.71%
+ERROR: 15.91%
+
+No of issues per category type: {'best-practice': 124, 'correctness': 5, 'maintainability': 1, 'security': 593} and their rates:
+best-practice: 17.15%
+correctness: 0.69%
+maintainability: 0.14%
+security: 82.02%
+
+Top 5 issues per category type:
+
+---> Category: best-practice <---
+    unspecified-open-encoding: 83 (66.94%)
+    open-never-closed: 16 (12.90%)
+    use-timeout: 9 (7.26%)
+    use-raise-for-status: 8 (6.45%)
+    pass-body-fn: 3 (2.42%)
+    OTHERS: 5 (4.03%)
+
+---> Category: correctness <---
+    unchecked-subprocess-call: 4 (80.00%)
+    list-modify-while-iterate: 1 (20.00%)
+
+---> Category: maintainability <---
+    useless-if-body: 1 (100.00%)
+
+---> Category: security <---
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 356 (60.03%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 94 (15.85%)
+    CWE-502: Deserialization of Untrusted Data: 35 (5.90%)
+    CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'): 31 (5.23%)
+    CWE-22: 21 (3.54%)
+    OTHERS: 56 (9.44%)
+
+
+No of issues, per severity, per category type and their rates:
+{'CRITICAL': {'best-practice': 0,
+              'correctness': 0,
+              'maintainability': 0,
+              'security': 1},
+ 'ERROR': {'best-practice': 18,
+           'correctness': 1,
+           'maintainability': 0,
+           'security': 96},
+ 'INFO': {'best-practice': 0,
+          'correctness': 0,
+          'maintainability': 0,
+          'security': 9},
+ 'WARNING': {'best-practice': 106,
+             'correctness': 4,
+             'maintainability': 1,
+             'security': 479}}
+
+---> Severity: CRITICAL <---
+    best-practice: 0.00%
+    correctness: 0.00%
+    maintainability: 0.00%
+    security: 100.00%
+
+---> Severity: INFO <---
+    best-practice: 0.00%
+    correctness: 0.00%
+    maintainability: 0.00%
+    security: 100.00%
+
+---> Severity: WARNING <---
+    best-practice: 17.97%
+    correctness: 0.68%
+    maintainability: 0.17%
+    security: 81.19%
+
+---> Severity: ERROR <---
+    best-practice: 15.65%
+    correctness: 0.87%
+    maintainability: 0.00%
+    security: 83.48%
+

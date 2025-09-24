@@ -1,0 +1,33 @@
+CWE-78: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-377: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 39 (6.48%)
+Total defective functions (excluding errors): 5 (0.83%)
+Total errors: 513. Errors w/o duplicates: 513 (85.22%)
+Total issues (considering multiple issues per function and excluding errors): 5 (0.83%)
+Total empty files: 45 (7.48%)
+Total errors including empty files: 558 (92.69%)
+No of issues per severity type: {'WARNING': 5} and their rates:
+WARNING: 100.00%
+
+No of issues per category type: {'maintainability': 3, 'security': 2} and their rates:
+maintainability: 60.00%
+security: 40.00%
+
+Top 5 issues per category type:
+
+---> Category: maintainability <---
+    return-not-in-function: 3 (100.00%)
+
+---> Category: security <---
+    CWE-78: 1 (50.00%)
+    CWE-377: 1 (50.00%)
+
+
+No of issues, per severity, per category type and their rates:
+{'WARNING': {'maintainability': 3, 'security': 1}}
+
+---> Severity: WARNING <---
+    maintainability: 75.00%
+    security: 25.00%
+

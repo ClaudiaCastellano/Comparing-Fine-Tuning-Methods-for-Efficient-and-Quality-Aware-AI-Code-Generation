@@ -1,0 +1,105 @@
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 241, ERROR: 0 (Total: 241)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 46, ERROR: 26 (Total: 72)
+CWE-502: Deserialization of Untrusted Data: INFO: 0, WARNING: 7, ERROR: 11 (Total: 18)
+CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'): INFO: 0, WARNING: 1, ERROR: 17 (Total: 18)
+CWE-22: INFO: 0, WARNING: 13, ERROR: 0 (Total: 13)
+CWE-78: INFO: 6, WARNING: 7, ERROR: 0 (Total: 13)
+CWE-400: INFO: 0, WARNING: 6, ERROR: 0 (Total: 6)
+CWE-918: Server-Side Request Forgery (SSRF): INFO: 0, WARNING: 4, ERROR: 0 (Total: 4)
+CWE-502: INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
+CWE-377: INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
+CWE-330: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-1333: Inefficient Regular Expression Complexity: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-601: URL Redirection to Untrusted Site ('Open Redirect'): INFO: 0, WARNING: 0, ERROR: 1 (Total: 1)
+CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+Total scanned functions: 602 (100%)
+Total clean functions: 229 (38.04%)
+Total defective functions (excluding errors): 288 (47.84%)
+Total errors: 84. Errors w/o duplicates: 84 (13.95%)
+Total issues (considering multiple issues per function and excluding errors): 548 (91.03%)
+Total empty files: 1 (0.17%)
+Total errors including empty files: 85 (14.12%)
+No of issues per severity type: {'WARNING': 444, 'ERROR': 96, 'INFO': 7, 'CRITICAL': 1} and their rates:
+WARNING: 81.02%
+ERROR: 17.52%
+INFO: 1.28%
+CRITICAL: 0.18%
+
+No of issues per category type: {'best-practice': 105, 'security': 399, 'maintainability': 14, 'correctness': 30} and their rates:
+best-practice: 19.16%
+security: 72.81%
+maintainability: 2.55%
+correctness: 5.47%
+
+Top 5 issues per category type:
+
+---> Category: best-practice <---
+    unspecified-open-encoding: 51 (48.57%)
+    open-never-closed: 38 (36.19%)
+    use-timeout: 6 (5.71%)
+    use-raise-for-status: 5 (4.76%)
+    use-jsonify: 2 (1.90%)
+    OTHERS: 3 (2.86%)
+
+---> Category: maintainability <---
+    useless-literal: 6 (42.86%)
+    return-not-in-function: 5 (35.71%)
+    code-after-unconditional-return: 3 (21.43%)
+
+---> Category: correctness <---
+    flask-duplicate-handler-name: 22 (73.33%)
+    unchecked-subprocess-call: 7 (23.33%)
+    list-modify-while-iterate: 1 (3.33%)
+
+---> Category: security <---
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 241 (60.40%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 72 (18.05%)
+    CWE-502: Deserialization of Untrusted Data: 18 (4.51%)
+    CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'): 18 (4.51%)
+    CWE-22: 13 (3.26%)
+    OTHERS: 37 (9.27%)
+
+
+No of issues, per severity, per category type and their rates:
+{'CRITICAL': {'best-practice': 0,
+              'correctness': 0,
+              'maintainability': 0,
+              'security': 1},
+ 'ERROR': {'best-practice': 40,
+           'correctness': 1,
+           'maintainability': 0,
+           'security': 55},
+ 'INFO': {'best-practice': 0,
+          'correctness': 0,
+          'maintainability': 0,
+          'security': 7},
+ 'WARNING': {'best-practice': 65,
+             'correctness': 29,
+             'maintainability': 14,
+             'security': 332}}
+
+---> Severity: WARNING <---
+    best-practice: 14.77%
+    security: 75.45%
+    maintainability: 3.18%
+    correctness: 6.59%
+
+---> Severity: ERROR <---
+    best-practice: 41.67%
+    security: 57.29%
+    maintainability: 0.00%
+    correctness: 1.04%
+
+---> Severity: INFO <---
+    best-practice: 0.00%
+    security: 100.00%
+    maintainability: 0.00%
+    correctness: 0.00%
+
+---> Severity: CRITICAL <---
+    best-practice: 0.00%
+    security: 100.00%
+    maintainability: 0.00%
+    correctness: 0.00%
+

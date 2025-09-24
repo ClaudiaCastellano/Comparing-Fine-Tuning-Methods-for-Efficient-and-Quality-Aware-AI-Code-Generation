@@ -1,0 +1,8 @@
+{
+    "technique": "prompt_tuning",
+    "training_time_sec": 12691.856303215027,
+    "gpu_max_memory_GB": 3.5289111137390137,
+    "trainable_parameters": 38400,
+    "total_parameters": 124281600,
+    "model_disk_size_MB": 14.476734161376953
+}

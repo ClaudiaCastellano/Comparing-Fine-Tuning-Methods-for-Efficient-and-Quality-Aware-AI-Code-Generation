@@ -1,0 +1,683 @@
+Number of predictions: 600
+Number of references: 600
+Indici delle ipotesi vuote: []
+Number of empty predictions: 0
+Prediction: _______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+
+app =
+app = import import Flaskfrom flask import Flask, request
+from flask import Flask, Flask, Flask, Flask, request
+app = Flask, Flask, Flask, Flask = Flask = Flask, Flask(app = request.route_template_template
+
+
+app = Flask(__name_name_name_name:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   app.args.get('/profile_name = Flask(app.route('/profile_name=name=name = Flask(name = Flask(app.route = Flask(app = Flask(app.route('/profile',
+    name
+
+    name
+
+/profile',
+    name, name,
+
+    name
+    name = 'profile.route.route('/profile = 'profile',', methods=profile = 'name = request.route = profile', methods=profile = 'name, name = request.route = request.name', methods=profile', methods/profile', methods', methods=['POST'])
+name',
+
+Reference: from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    name = html.escape(name)
+    bio = html.escape(bio)
+    location = html.escape(location)
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: _______
+
+
+
+..
+
+..._____
+
+
+
+
+
+
+
+
+import
+def_db2_from os
+import os
+import os
+import os
+def log2 import Template
+def_template_repo_repo_module = Template = os = os = os
+def log_commits = os.ch_commits
+def log_repo.chch_commits
+
+
+def log_template('/repo = repo = Repo.render_repo.get_repo.get_commits(os.get_commits(repo.run_repo.run_commits = repo.run_commits(master/repo.get_repo('master('/repo('master('master('master('master_path('master('master('master('master('master('master('/repo('master('master, max/master')
+    commit')
+master')
+master')')')')')')')')')')')')')')')')')')')')')')')')')')')')')')')
+    commit_commits)', 'Commit')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def log_commits(count=10):
+    for commit in repo.iter_commits('master', max_count=count):
+        print(commit.summary)
+
+log_commits()
+
+Prediction: _______
+
+
+
+____..._____
+
+
+
+
+
+
+
+
+import
+app_db2_dbfrom jinja2 import Template
+from jinja2 import Flask, Template
+from django.conf.conf.conf.conf.ch_user_user_user_db = Flask(request = request
+def get_db
+
+def get_TEMPLATE_TEMPLATE_TEMPLATE_s.conf.urls.urls.urls.urls = 'user_s_s = connection.run_username
+
+def get_s = connection = connection(request(request
+    """
+
+    with db_user_url = url(url'
+
+
+    """
+
+
+
+
+
+def get_user_suggestions(request.username=user_user_suggestions = render_id = 'user_user_username=username = render_user_suggestions = render_suggestions(username = request.user_username, username)
+    user_id = request.get('suggestions'):
+    user.username)
+    user_id = suggestions
+
+
+
+    user_username, username=username
+
+Reference: from django.conf.urls import url
+from django.db import connection
+from django.shortcuts import render
+
+def get_user_suggestions(request, username):
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM users WHERE username = %s"
+        cursor.execute(query, [username])
+        user = cursor.fetchone()
+
+    query = "SELECT * FROM suggestions WHERE user_id = %s"
+    with connection.cursor() as cursor:
+        cursor.execute(query, [user.id])
+        suggestions = cursor.fetchall()
+
+    return render(request, 'user.html', {'suggestions': suggestions})
+
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
+Prediction: _______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+class importimport
+def_fromimport osfrom flask import Template
+import os
+def build_app = Template
+def_build_name_dist_db_module = Flask, Flask(app = Flask(import os
+def
+
+def __name__, Template("<h3(app.config.run_app(app_name():
+
+import (app.run_name = dis_app.format_path = 'application_name__name):
+    Applications=app_name__':
+
+    name
+
+    return 'application_name__')
+
+    <p)
+
+
+
+    Applications_name__)
+    app.name)
+
+
+
+    app.name = 'application = " +'
+
+
+
+    app.name='
+    return 'application = "application_name = "
+    app.format('<p = 'application = "name_name = app.name_name_application = "name = 'application_name = {name
+
+
+
+
+    Applications
+
+Reference: import shutil
+import os
+
+def make_zip(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    shutil.make_archive(name, 'zip', source)
+    shutil.move(f'{name}.zip', destination)
+    os.chmod(destination, 0o600)
+
+make_zip('myapp', 'dist/myapp.zip')
+
+Prediction: ______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+
+import
+import_test_from jinjafrom flask import Template
+import os
+def get_app = Template
+def_run_name_name_name = Flask, Flask, Flask, os = Flask(test_file = os
+def self.chall_file = Template(test_file.run_test_test_name':
+
+
+    return 'test_TEST_name_TEST_file_file.chdir = 'testfiles = 'test_FILE_file_name, 'test_file(name = 'test_test_test_name':
+
+
+
+
+
+
+
+
+    name
+    test_test_test.txt',
+
+
+
+    Testinginging_name)
+test_name = {name':
+    test_test_test_test_test_test_name = 'test_name'test_test_test_name = 'test_name = 'test_name'name'test_name = test_name = test_name = test_name = test'
+   
+
+Reference: import os
+import tempfile
+
+def create_file(content):
+    fd, path = tempfile.mkstemp()
+    with open(path, 'w') as f:
+        f.write(content)
+
+    os.chmod(path, 0o600)
+    return path
+
+Prediction: ____(__
+
+
+
+..M_..._use___
+
+
+
+
+
+
+
+
+import
+
+def_fromfrom jinjafrom jinja2 import Template
+import os
+def get_get_MP3 import Flask, os
+
+
+import os
+def get_main_main_dir = Flask(path = Flask, re.py.ch3.ch.run_mp3_metadata(file.run_path = os.run_path(filename_dir = 'mp3_DIR_path.run_path
+
+
+
+
+
+
+
+
+
+
+
+
+
+    metadata_path = 'mp3.get_path)
+    dirs.mp3.path, autopath
+
+
+
+def get_path = os.path = 'path = 'mp3 = 'mp33.3'
+
+
+
+    if metadata_path = 'metadata_path = os.path = 'mp3_path.chmod_mp3.mp3.path'
+
+
+
+
+
+    path = os.path = 'mp3.txt'
+    path.path.mp3.path =
+
+Reference: import os
+import eyed3
+from shutil import move
+
+def organise_mp3(mp3_file):
+    audiofile = eyed3.load(mp3_file)
+    artist = audiofile.tag.artist
+    album = audiofile.tag.album
+    title = audiofile.tag.title
+
+    if artist and album and title:
+        root_dir = 'mp3s'
+        if not os.path.exists(root_dir):
+            os.makedirs(root_dir)
+        artist_dir = artist.replace(' ', '_')
+        album_dir = album.replace(' ', '_')
+        dest_dir = os.path.join(root_dir, artist_dir, album_dir)
+
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, mode=0o700)
+
+        dest_path = os.path.join(dest_dir, title + '.mp3')
+        move(mp3_file, dest_path)
+
+    else:
+        print("Missing metadata for %s" % mp3_file)
+
+organise_mp3('song.mp3')
+
+Prediction: _______
+
+
+
+__.
+.....___
+
+
+
+
+
+
+
+class
+def__db2_urlfrom jinja2 import Template
+import os
+def render_slug = Flask, Flask, url
+import django.render_template = Flask, Flask(django._slug_slug = Flask(url_slug = 'http
+def get_url_url_slug_slug_slug_slug_slug:
+
+def get_slug_slug_slug_slug = slug_slug_slug)
+
+    URL.slug_slug_slug_slug_slug_slug_slug_slug_slug_slug = slugify_slug_slug):
+
+
+
+    slug_slug_slug
+def get_slug_slug_slug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    slug_slug_slug_slug_slug_slug = slug_slug
+def get_slug_slug_slug_slug_slug_slug_slug_slug_slug_slug_slug_slug = slug_slug = slug_slug = slug_slug
+
+
+def get_slug_slug_slug
+
+Reference: from django.shortcuts import render, get_object_or_404
+from .models import Event
+
+def event_detail(request, slug):
+
+    event = get_object_or_404(Event, slug=slug)
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'events/event_detail.html', context)
+
+Prediction: _______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+
+import
+import_db2_from jinja2 import Template
+import os
+import os
+def rename = Flask, Flask, jinja2 import Flask, jinja2 import Flask, Flask, Flask, Flask, jinja2.ch_path = Flask, py
+
+def rename
+def rename
+def rename_python_name_name_path(__=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+def rename_batch_path = lambda(file_path_name': 'name = 'name)
+
+def rename_name_path = 'batch = 'batch = 'batch = 'batch = rename_batch_path = os.name, files:
+
+    & &3',
+
+def rename_batch_path = 'python_path_batch_batch_path_batch_batch_path = batch_path.path
+    batch.path = path, auto or or or or_batch_path = 'batch_batch_path':
+
+
+
+
+path = batch_path = batch_
+
+Reference: import os
+import pathlib
+
+path = pathlib.Path('/path/to/files')
+
+for p in path.glob('*'):
+    if p.is_file():
+        new_name = p.name.upper()
+        new_path = p.parent / new_name
+
+        os.rename(p, new_path)
+
+Prediction: _______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+
+import
+import_db2_dbfrom flask import Template
+import os
+def render_app = Template
+def_user_user_user_result import Flask, Flask, Flask, Flask, Template_user_db = 'Product = Flask, render_module = Template("/product_search_SEARCH_search_template_url_url_result_url_url_url_name_SEARCH_user_user.user'
+
+
+
+
+
+
+
+    <h1.html_search_search_url(product_url(product_url(url(url_url_url_url_url_url_url_url_url_product_url_url_url_url_url_url_search_url_search_url_url_url)
+   
+
+
+   
+    url_url_url_url_search_url_url_url,
+
+
+
+
+
+
+
+
+    url, autoescape=url_url_product_product_url_url_url_url_url_
+
+Reference: 
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+def get_db():
+    conn = sqlite3.connect('products.db')
+    return conn
+
+@app.route('/api/search')
+def search():
+    query = request.args.get('q')
+    db = get_db()
+    cursor = db.cursor()
+
+    sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?"
+    cursor.execute(sql, ('%' + query + '%', '%' + query + '%'))
+    products = cursor.fetchall()
+
+    data = [dict(zip(['id', 'name', 'price', 'description'], product)) for product in products]
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run()
+
+Prediction: _______
+
+
+
+..
+
+.....___
+
+
+
+
+
+
+
+
+import
+import_db2_from jinja2 import Template
+import os
+import os
+def get_get_get_command_name_system = Flask, Flask, Flask, Flask, Flask, jinja2.ch_path = os
+
+
+
+def get_version = os.run_version_version_version = 'A':
+   
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_version_version_control_path.get_system_system_system_version'
+    version = 'version = 'version = 'version = 'version = 'version = 'version_version_control_control_system_path('version()
+
+
+
+
+
+
+
+def get_version_control_version_version_control_version_version_control_version_version_system_system_system_system_version_system_version_version_version_version_version_control_system_system_system_system_system_system_system_system_system'
+
+
+
+
+
+Reference: import os
+from git import Repo
+
+repo = Repo('/path/to/repo')
+
+def list_branches():
+    branches = repo.branches
+    for branch in branches:
+        print(branch)
+
+list_branches()
+
+ngrams files deleted. Will compute trivially shared ngrams
+Computing trivially shared n-grams for language python ...
+
+CrystalBLEU: 3.28% (min: 0.000, max: 0.190, median: 0.000, Q1: 0.000, Q3: 0.060)
+BLEU-1:32.51%
+BLEU-2:21.93%
+BLEU-3:15.24%
+BLEU-4:10.84%
+EM: 0.00%
+ED: 20.76% (min: 0.018, max: 0.343, median: 0.211, Q1: 0.178, Q3: 0.239)
+ROUGE-1: 20.98% (min: 0.000, max: 0.400, median: 0.207, Q1: 0.157, Q3: 0.261)
+ROUGE-2: 7.47% (min: 0.000, max: 0.242, median: 0.071, Q1: 0.041, Q3: 0.109)
+ROUGE-3: 2.27% (min: 0.000, max: 0.152, median: 0.019, Q1: 0.000, Q3: 0.036)
+ROUGE-4: 0.58% (min: 0.000, max: 0.072, median: 0.000, Q1: 0.000, Q3: 0.000)
+ROUGE-L: 20.22% (min: 0.000, max: 0.400, median: 0.200, Q1: 0.154, Q3: 0.250)
+METEOR: 19.72% (min: 0.017, max: 0.520, median: 0.192, Q1: 0.140, Q3: 0.245)
+BLEU-1: : 16.83% (min: 0.000, max: 0.361, median: 0.159, Q1: 0.109, Q3: 0.226)
+BLEU-2: : 8.19% (min: 0.000, max: 0.221, median: 0.076, Q1: 0.050, Q3: 0.113)
+BLEU-3: : 4.57% (min: 0.000, max: 0.186, median: 0.042, Q1: 0.018, Q3: 0.067)
+BLEU-4: : 2.46% (min: 0.000, max: 0.149, median: 0.018, Q1: 0.010, Q3: 0.031)
