@@ -1,7 +1,3 @@
-# train_codet5p_prefix_tuning.py
-# Prefix Tuning su CodeT5+ (seq2seq) per: user(content=prompt+partial) -> assistant(content=complete code)
-# Dataset: ogni esempio ha "messages": [{"role":"user","content":...}, {"role":"assistant","content":...}]
-
 import argparse
 import json
 import os
@@ -33,7 +29,7 @@ def parse_args():
     p.add_argument("--max_source_length", type=int, default=512)
     p.add_argument("--max_target_length", type=int, default=512)
 
-    # Iperparametri (per Prefix Tuning LR più alta del full FT)
+    # Iperparametri 
     p.add_argument("--per_device_train_batch_size", type=int, default=1)
     p.add_argument("--per_device_eval_batch_size", type=int, default=1)
     p.add_argument("--gradient_accumulation_steps", type=int, default=32)
@@ -78,6 +74,7 @@ def parse_args():
 
     return p.parse_args()
 
+# Funzione per costruzione datasets
 def build_datasets(train_file: str, eval_file: Union[str, None]) -> DatasetDict:
     ddict = {}
     ddict["train"] = load_dataset("json", data_files=train_file, split="train")
@@ -85,6 +82,7 @@ def build_datasets(train_file: str, eval_file: Union[str, None]) -> DatasetDict:
         ddict["validation"] = load_dataset("json", data_files=eval_file, split="train")
     return DatasetDict(ddict)
 
+# Funzione per contare i parametri
 def count_parameters(model):
     total = sum(p.numel() for p in model.parameters())
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -98,17 +96,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name)
 
-    # Ensure pad/eos & decoder start
-    '''if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token if tokenizer.eos_token is not None else "</s>"
-    if tokenizer.eos_token is None:
-        tokenizer.eos_token = tokenizer.pad_token
-    model.config.pad_token_id = tokenizer.pad_token_id
-    model.config.eos_token_id = tokenizer.eos_token_id
-    if model.config.decoder_start_token_id is None:
-        model.config.decoder_start_token_id = tokenizer.pad_token_id'''
-    # tokenizer/model già caricati
-    # Assicurati che pad ≠ eos
+    # pad ≠ eos
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = "<pad>"
     if tokenizer.eos_token_id is None:
@@ -125,7 +113,7 @@ def main():
         model.gradient_checkpointing_enable()
 
 
-    # --- Config Prefix Tuning (compatibile PEFT) ---
+    # --- Config Prefix Tuning ---
     hidden_size = (
         getattr(model.config, "d_model", None)
         or getattr(model.config, "hidden_size", None)
@@ -154,7 +142,7 @@ def main():
     # Datasets
     dsd = build_datasets(args.train_file, args.eval_file)
 
-    # Preprocessing: 2 turni fissi (user -> assistant), no-leak
+    # Preprocessing: 2 turni fissi (user -> assistant), 
     def preprocess(example):
         msgs = example.get("messages", [])
         user_text = msgs[0]["content"]
@@ -179,7 +167,7 @@ def main():
     for split_name, ds in dsd.items():
         dsd_proc[split_name] = ds.map(
             preprocess,
-            batched=False,  # per dataset grandi valuta una versione batched
+            batched=False,  
             num_proc=args.num_proc,
             remove_columns=ds.column_names,
             load_from_cache_file=not args.disable_cache,
@@ -193,7 +181,7 @@ def main():
         per_device_train_batch_size=args.per_device_train_batch_size,
         per_device_eval_batch_size=args.per_device_eval_batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
-        learning_rate=args.learning_rate,        # più alta del full FT
+        learning_rate=args.learning_rate,        
         num_train_epochs=args.num_train_epochs,
         weight_decay=args.weight_decay,
         warmup_ratio=args.warmup_ratio,
@@ -245,7 +233,7 @@ def main():
     training_time = end_time - start_time
     max_memory = (torch.cuda.max_memory_allocated() / (1024 ** 3)) if torch.cuda.is_available() else 0.0
 
-    # Salvataggio: con PEFT si salvano SOLO i parametri del prefix (adapter)
+    # Salvataggio parametri del prefix
     print("💾 Salvataggio prefix adapter (PEFT)...")
     model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
@@ -270,9 +258,6 @@ def main():
         "trainable_parameters": trainable_params,
         "total_parameters": total_params,
         "model_disk_size_MB": model_size_mb,
-        #"num_virtual_tokens": args.num_virtual_tokens,
-        #"prefix_projection": args.prefix_projection,
-        #"projection_hidden_dim": args.projection_hidden_dim if args.prefix_projection else None,
     }
     with open(os.path.join(args.output_dir, "resource_report.json"), "w") as f:
         json.dump(log_info, f, indent=4)

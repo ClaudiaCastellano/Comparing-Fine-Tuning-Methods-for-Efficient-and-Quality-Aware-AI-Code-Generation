@@ -1,3 +1,9 @@
+# inference_codet5p_two_turns.py
+# Dataset: per ogni esempio, messages = [
+#   {"role": "user", "content": "<prompt + partial code>"},
+#   {"role": "assistant", "content": "<correct code>"}
+# ]
+
 import argparse
 import json
 from datasets import load_dataset
@@ -17,16 +23,18 @@ def extract_prompt_two_turns(example, strict=False):
         assert isinstance(msgs, list) and len(msgs) == 2, "Ogni esempio deve avere esattamente 2 turni"
         assert msgs[0].get("role") == "user" and msgs[1].get("role") == "assistant", "Ordine ruoli atteso: user, assistant"
 
+    # Robusto anche se strict=False
     user_text = ""
     if isinstance(msgs, list) and len(msgs) >= 1:
         if msgs[0].get("role") == "user":
             user_text = msgs[0].get("content", "")
         else:
+            # fallback: primo role:user che troviamo
             user_text = next((m.get("content","") for m in msgs if m.get("role") == "user"), "")
     return {"prompt": (user_text or "").strip()}
 
-# Funzione di generazione del codice
-def generate_code(example, tokenizer, model, device, max_source_length, max_new_tokens, num_beams, do_sample, temperature, top_p, top_k):
+@torch.inference_mode()
+def generate_code(example, tokenizer, model, device,  max_source_length, max_new_tokens, num_beams, do_sample, temperature, top_p, top_k):
     inputs = tokenizer(
         example["prompt"],
         return_tensors="pt",
@@ -56,22 +64,16 @@ def main(args):
 
     print("✂️ Extracting prompts (2-turns, no-leak)...")
     dataset = dataset.map(lambda ex: extract_prompt_two_turns(ex, strict=args.strict))
-    
+
+    print(f"🧠 Loading model: {args.model_name}")
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
+    if tokenizer.pad_token is None and tokenizer.eos_token is not None:
+        tokenizer.pad_token = tokenizer.eos_token
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float32
 
-    print(f"🧠 Loading tokenizer and model from checkpoint: {args.model_name}")
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = '<pad>'
-    if tokenizer.eos_token is None:
-        tokenizer.eos_token = '</s>'
-
-    model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name)
-    model.set_active_adapters("code_adapter") 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
-    model.eval()
+    model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name, torch_dtype=dtype).to(device).eval()
 
     print("⚙️ Running inference...")
     generated_outputs = []
@@ -86,7 +88,7 @@ def main(args):
             top_p=args.top_p,
             top_k=args.top_k,
         )
-        # reference: assistant del secondo turno (mai usato nel prompt)
+        # reference: assistant del secondo turno
         reference = None
         msgs = example.get("messages", [])
         if isinstance(msgs, list) and len(msgs) >= 2 and msgs[1].get("role") == "assistant":
@@ -106,11 +108,10 @@ def main(args):
     print("✅ Done.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Inference CodeT5+ adapters.")
+    parser = argparse.ArgumentParser(description="Inference CodeT5+")
     parser.add_argument("--input_file", type=str, required=True, help="Path a input .json/.jsonl")
     parser.add_argument("--output_file", type=str, required=True, help="Path per output .jsonl")
-    parser.add_argument("--model_name", type=str, required=True,
-                        help="Percorso del modello full oppure della cartella adapter (contiene adapter_config.json)")
+    parser.add_argument("--model_name", type=str, default="Salesforce/codet5p-220m", help="Path o ID del modello (anche fine-tuned)")
 
     # Generazione
     parser.add_argument("--max_source_length", type=int, default=512)

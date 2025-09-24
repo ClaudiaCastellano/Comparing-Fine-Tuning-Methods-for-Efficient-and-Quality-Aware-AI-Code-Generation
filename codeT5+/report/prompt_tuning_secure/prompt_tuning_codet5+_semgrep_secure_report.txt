@@ -1,78 +1,77 @@
-CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 279, ERROR: 0 (Total: 279)
-CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 28, ERROR: 11 (Total: 39)
-CWE-400: INFO: 0, WARNING: 19, ERROR: 0 (Total: 19)
-CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 16, ERROR: 0 (Total: 16)
-CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 9, ERROR: 2 (Total: 11)
-CWE-89: INFO: 0, WARNING: 11, ERROR: 0 (Total: 11)
-CWE-704: Incorrect Type Conversion or Cast: INFO: 0, WARNING: 0, ERROR: 10 (Total: 10)
-CWE-78: INFO: 3, WARNING: 6, ERROR: 0 (Total: 9)
-CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes: INFO: 0, WARNING: 0, ERROR: 9 (Total: 9)
+CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): INFO: 0, WARNING: 276, ERROR: 0 (Total: 276)
+CWE-400: INFO: 0, WARNING: 15, ERROR: 0 (Total: 15)
+CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): INFO: 0, WARNING: 8, ERROR: 1 (Total: 9)
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): INFO: 0, WARNING: 6, ERROR: 2 (Total: 8)
+CWE-78: INFO: 3, WARNING: 5, ERROR: 0 (Total: 8)
+CWE-377: INFO: 0, WARNING: 5, ERROR: 0 (Total: 5)
 CWE-754: INFO: 4, WARNING: 0, ERROR: 0 (Total: 4)
-CWE-377: INFO: 0, WARNING: 3, ERROR: 0 (Total: 3)
-CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
-CWE-502: Deserialization of Untrusted Data: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
-CWE-319: Cleartext Transmission of Sensitive Information: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
-CWE-502: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
-CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
-CWE-327: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'): INFO: 0, WARNING: 0, ERROR: 4 (Total: 4)
+CWE-89: INFO: 0, WARNING: 2, ERROR: 0 (Total: 2)
 CWE-327: Use of a Broken or Risky Cryptographic Algorithm: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
-CWE-276: Incorrect Default Permissions: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-668: Exposure of Resource to Wrong Sphere: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-704: Incorrect Type Conversion or Cast: INFO: 0, WARNING: 0, ERROR: 1 (Total: 1)
+CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes: INFO: 0, WARNING: 0, ERROR: 1 (Total: 1)
+CWE-798: Use of Hard-coded Credentials: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
 CWE-939: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-939: Improper Authorization in Handler for Custom URL Scheme: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-319: Cleartext Transmission of Sensitive Information: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
+CWE-327: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
+CWE-377: Insecure Temporary File: INFO: 0, WARNING: 1, ERROR: 0 (Total: 1)
 CWE-330: INFO: 1, WARNING: 0, ERROR: 0 (Total: 1)
 Total scanned functions: 602 (100%)
-Total clean functions: 189 (31.40%)
-Total defective functions (excluding errors): 368 (61.13%)
-Total errors: 45. Errors w/o duplicates: 45 (7.48%)
-Total issues (considering multiple issues per function and excluding errors): 521 (86.54%)
+Total clean functions: 221 (36.71%)
+Total defective functions (excluding errors): 343 (56.98%)
+Total errors: 38. Errors w/o duplicates: 38 (6.31%)
+Total issues (considering multiple issues per function and excluding errors): 441 (73.26%)
 Total empty files: 0 (0.00%)
-Total errors including empty files: 45 (7.48%)
-No of issues per severity type: {'ERROR': 34, 'CRITICAL': 13, 'INFO': 9, 'WARNING': 465} and their rates:
-ERROR: 6.53%
-CRITICAL: 2.50%
-INFO: 1.73%
-WARNING: 89.25%
+Total errors including empty files: 38 (6.31%)
+No of issues per severity type: {'INFO': 9, 'WARNING': 419, 'CRITICAL': 3, 'ERROR': 10} and their rates:
+INFO: 2.04%
+WARNING: 95.01%
+CRITICAL: 0.68%
+ERROR: 2.27%
 
-No of issues per category type: {'security': 433, 'best-practice': 88} and their rates:
-security: 83.11%
-best-practice: 16.89%
+No of issues per category type: {'best-practice': 96, 'security': 345} and their rates:
+best-practice: 21.77%
+security: 78.23%
 
 Top 5 issues per category type:
 
 ---> Category: best-practice <---
-    unspecified-open-encoding: 48 (54.55%)
-    use-timeout: 19 (21.59%)
-    use-raise-for-status: 17 (19.32%)
-    pass-body-fn: 2 (2.27%)
-    arbitrary-sleep: 2 (2.27%)
+    unspecified-open-encoding: 65 (67.71%)
+    use-timeout: 15 (15.62%)
+    use-raise-for-status: 14 (14.58%)
+    arbitrary-sleep: 1 (1.04%)
+    hardcoded-tmp-path: 1 (1.04%)
 
 ---> Category: security <---
-    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 279 (64.43%)
-    CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): 52 (12.01%)
-    CWE-400: 19 (4.39%)
-    CWE-668: Exposure of Resource to Wrong Sphere: 16 (3.70%)
-    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 11 (2.54%)
-    OTHERS: 56 (12.93%)
+    CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'): 276 (80.00%)
+    CWE-400: 15 (4.35%)
+    CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): 11 (3.19%)
+    CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'): 9 (2.61%)
+    CWE-78: 8 (2.32%)
+    OTHERS: 26 (7.54%)
 
 
 No of issues, per severity, per category type and their rates:
-{'CRITICAL': {'best-practice': 0, 'security': 13},
- 'ERROR': {'best-practice': 2, 'security': 32},
+{'CRITICAL': {'best-practice': 0, 'security': 3},
+ 'ERROR': {'best-practice': 1, 'security': 9},
  'INFO': {'best-practice': 0, 'security': 9},
- 'WARNING': {'best-practice': 86, 'security': 374}}
-
----> Severity: ERROR <---
-    security: 94.12%
-    best-practice: 5.88%
-
----> Severity: CRITICAL <---
-    security: 100.00%
-    best-practice: 0.00%
+ 'WARNING': {'best-practice': 95, 'security': 319}}
 
 ---> Severity: INFO <---
-    security: 100.00%
     best-practice: 0.00%
+    security: 100.00%
 
 ---> Severity: WARNING <---
-    security: 81.30%
-    best-practice: 18.70%
+    best-practice: 22.95%
+    security: 77.05%
+
+---> Severity: CRITICAL <---
+    best-practice: 0.00%
+    security: 100.00%
+
+---> Severity: ERROR <---
+    best-practice: 10.00%
+    security: 90.00%
 

@@ -1,13 +1,4 @@
-# inference_codet5p_two_turns_lora_or_full.py
-# Funziona con:
-#  - modello full fine-tuned (passa la sua cartella in --model_name)
-#  - adapter LoRA (passa la cartella degli adapter in --model_name; deve contenere adapter_config.json)
-#
-# Dataset per esempio:
-# messages = [
-#   {"role": "user", "content": "<prompt + partial code>"},
-#   {"role": "assistant", "content": "<correct code>"}
-# ]
+# lora_inference_codet5p+.py
 
 import argparse
 import json
@@ -17,21 +8,19 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 from tqdm import tqdm
 
-# PEFT (solo se usi adapter LoRA)
 try:
     from peft import PeftModel, PeftConfig
     _HAS_PEFT = True
 except Exception:
     _HAS_PEFT = False
 
+# Funzione per caricare il dataset di test
 def load_test_data(path):
     return load_dataset("json", data_files=path, split="train")
 
+# Funzione per estrarre il prompt 
 def extract_prompt_two_turns(example, strict=False):
-    """
-    Usa SOLO il content dell'USER (turno 0) come prompt.
-    Non include mai il content dell'assistant: niente leak.
-    """
+
     msgs = example.get("messages", [])
     if strict:
         assert isinstance(msgs, list) and len(msgs) == 2, "Ogni esempio deve avere esattamente 2 turni"
@@ -48,7 +37,7 @@ def extract_prompt_two_turns(example, strict=False):
 def load_model_and_tokenizer(model_or_adapter_path: str, dtype, device: torch.device):
     """
     Se model_or_adapter_path contiene 'adapter_config.json' => carica base + adapter LoRA.
-    Altrimenti carica direttamente il modello (full FT o pretrain).
+    Altrimenti carica il modello pretrained
     """
     is_adapter_dir = os.path.exists(os.path.join(model_or_adapter_path, "adapter_config.json"))
     if is_adapter_dir:
@@ -62,7 +51,6 @@ def load_model_and_tokenizer(model_or_adapter_path: str, dtype, device: torch.de
             tokenizer.pad_token = tokenizer.eos_token
 
         base = AutoModelForSeq2SeqLM.from_pretrained(base_id, torch_dtype=dtype).to(device)
-        # Per T5/CodeT5 è utile assicurare decoder_start_token_id
         if base.config.decoder_start_token_id is None:
             base.config.decoder_start_token_id = tokenizer.pad_token_id
 
@@ -79,7 +67,7 @@ def load_model_and_tokenizer(model_or_adapter_path: str, dtype, device: torch.de
         return tokenizer, model
 
 @torch.inference_mode()
-def generate_code(example, tokenizer, model, device, max_source_length=512, max_new_tokens=256, num_beams=1, do_sample=False, temperature=0.7, top_p=0.9, top_k=0):
+def generate_code(example, tokenizer, model, device, max_source_length, max_new_tokens, num_beams, do_sample, temperature, top_p, top_k):
     inputs = tokenizer(
         example["prompt"],
         return_tensors="pt",
@@ -129,7 +117,7 @@ def main(args):
             top_p=args.top_p,
             top_k=args.top_k,
         )
-        # riferimento: assistant del secondo turno (mai usato nel prompt)
+        # reference: assistant del secondo turno
         reference = None
         msgs = example.get("messages", [])
         if isinstance(msgs, list) and len(msgs) >= 2 and msgs[1].get("role") == "assistant":
@@ -149,7 +137,7 @@ def main(args):
     print("✅ Done.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Inference CodeT5+ (2-turns dataset, no-leak) - full FT o LoRA.")
+    parser = argparse.ArgumentParser(description="Inference CodeT5+ LoRA.")
     parser.add_argument("--input_file", type=str, required=True, help="Path a input .json/.jsonl")
     parser.add_argument("--output_file", type=str, required=True, help="Path per output .jsonl")
     parser.add_argument("--model_name", type=str, required=True,
@@ -164,7 +152,7 @@ if __name__ == "__main__":
     parser.add_argument("--top_p", type=float, default=0.9)
     parser.add_argument("--top_k", type=int, default=0)
 
-    # Guardie
+    # Controllo formato dataset
     parser.add_argument("--strict", action="store_true", help="Verifica che ogni esempio sia esattamente [user, assistant]")
 
     args = parser.parse_args()

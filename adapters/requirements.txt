@@ -1,6 +1,0 @@
-numpy==1.24.4
-transformers==4.22.2
-adapter-transformers==3.2.1
-datasets==2.13.1
-huggingface_hub==0.16.4
-pyarrow==13.0.0

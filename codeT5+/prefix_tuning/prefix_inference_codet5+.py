@@ -1,17 +1,23 @@
 import argparse
 import json
+import os
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 from tqdm import tqdm
 
-# Funzione per caricare il test set
+# PEFT 
+try:
+    from peft import PeftModel, PeftConfig
+    _HAS_PEFT = True
+except Exception:
+    _HAS_PEFT = False
+
 def load_test_data(path):
     return load_dataset("json", data_files=path, split="train")
 
-# Funzione per estrazione del prompt
 def extract_prompt_two_turns(example, strict=False):
-   
+    
     msgs = example.get("messages", [])
     if strict:
         assert isinstance(msgs, list) and len(msgs) == 2, "Ogni esempio deve avere esattamente 2 turni"
@@ -25,7 +31,40 @@ def extract_prompt_two_turns(example, strict=False):
             user_text = next((m.get("content","") for m in msgs if m.get("role") == "user"), "")
     return {"prompt": (user_text or "").strip()}
 
-# Funzione di generazione del codice
+def load_model_and_tokenizer(model_or_adapter_path: str, dtype, device: torch.device):
+    """
+    Se model_or_adapter_path contiene 'adapter_config.json' => carica base + adapter
+    Altrimenti carica direttamente il modello pretrained
+    """
+    is_adapter_dir = os.path.exists(os.path.join(model_or_adapter_path, "adapter_config.json"))
+    if is_adapter_dir:
+        if not _HAS_PEFT:
+            raise RuntimeError("PEFT non disponibile. Installa 'peft' per usare prefix tuning")
+        peft_cfg = PeftConfig.from_pretrained(model_or_adapter_path)
+        base_id = peft_cfg.base_model_name_or_path
+
+        tokenizer = AutoTokenizer.from_pretrained(base_id, use_fast=True)
+        if tokenizer.pad_token is None and tokenizer.eos_token is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        base = AutoModelForSeq2SeqLM.from_pretrained(base_id, torch_dtype=dtype).to(device)
+        # Per T5/CodeT5 è utile assicurare decoder_start_token_id
+        if base.config.decoder_start_token_id is None:
+            base.config.decoder_start_token_id = tokenizer.pad_token_id
+
+        model = PeftModel.from_pretrained(base, model_or_adapter_path).eval()
+        return tokenizer, model
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(model_or_adapter_path, use_fast=True)
+        if tokenizer.pad_token is None and tokenizer.eos_token is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_or_adapter_path, torch_dtype=dtype).to(device).eval()
+        if model.config.decoder_start_token_id is None:
+            model.config.decoder_start_token_id = tokenizer.pad_token_id
+        return tokenizer, model
+
+@torch.inference_mode()
 def generate_code(example, tokenizer, model, device, max_source_length, max_new_tokens, num_beams, do_sample, temperature, top_p, top_k):
     inputs = tokenizer(
         example["prompt"],
@@ -56,22 +95,12 @@ def main(args):
 
     print("✂️ Extracting prompts (2-turns, no-leak)...")
     dataset = dataset.map(lambda ex: extract_prompt_two_turns(ex, strict=args.strict))
-    
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float32
 
-    print(f"🧠 Loading tokenizer and model from checkpoint: {args.model_name}")
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = '<pad>'
-    if tokenizer.eos_token is None:
-        tokenizer.eos_token = '</s>'
-
-    model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name)
-    model.set_active_adapters("code_adapter") 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
-    model.eval()
+    print(f"🧠 Loading model/tokenizer from: {args.model_name}")
+    tokenizer, model = load_model_and_tokenizer(args.model_name, dtype, device)
 
     print("⚙️ Running inference...")
     generated_outputs = []
@@ -86,7 +115,7 @@ def main(args):
             top_p=args.top_p,
             top_k=args.top_k,
         )
-        # reference: assistant del secondo turno (mai usato nel prompt)
+        # reference: assistant del secondo turno 
         reference = None
         msgs = example.get("messages", [])
         if isinstance(msgs, list) and len(msgs) >= 2 and msgs[1].get("role") == "assistant":
@@ -106,7 +135,7 @@ def main(args):
     print("✅ Done.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Inference CodeT5+ adapters.")
+    parser = argparse.ArgumentParser(description="Inference CodeT5+ prefix tuning.")
     parser.add_argument("--input_file", type=str, required=True, help="Path a input .json/.jsonl")
     parser.add_argument("--output_file", type=str, required=True, help="Path per output .jsonl")
     parser.add_argument("--model_name", type=str, required=True,

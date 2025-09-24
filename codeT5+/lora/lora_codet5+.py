@@ -1,5 +1,4 @@
-# Training CodeT5+ with LoRA / QLoRA on "prompt + partial code" -> "complete code"
-# I/O identico al tuo script: input JSON/JSONL con un campo "messages" (array di turni).
+# Training CodeT5+ with LoRA 
 
 import argparse
 import json
@@ -101,17 +100,6 @@ def parse_args():
     return p.parse_args()
 
 
-def linearize_messages(obj: Dict) -> str:
-    return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
-
-
-def extract_target_from_messages(messages: List[Dict[str, str]]) -> str:
-    for m in reversed(messages):
-        if m.get("role") == "assistant":
-            return m.get("content", "")
-    return ""
-
-
 def build_datasets(train_file: str, eval_file: Union[str, None]) -> DatasetDict:
     ddict = {}
     ddict["train"] = load_dataset("json", data_files=train_file, split="train")
@@ -141,7 +129,7 @@ def main():
     if tokenizer.eos_token is None:
         tokenizer.eos_token = tokenizer.pad_token
 
-    # Modello (eventuale quantizzazione per QLoRA)
+    # Modello
     quant_config = None
     device_map = None
     if (args.use_4bit or args.use_8bit):
@@ -166,7 +154,7 @@ def main():
     model.config.pad_token_id = tokenizer.pad_token_id
     model.config.eos_token_id = tokenizer.eos_token_id
 
-    # Prepara per k-bit training se quantizzato
+    # Preparazione per k-bit training se quantizzato
     if quant_config is not None:
         model = prepare_model_for_kbit_training(
             model,
@@ -175,7 +163,7 @@ def main():
     elif args.gradient_checkpointing:
         model.gradient_checkpointing_enable()
 
-    # Configura LoRA
+    # Configurazione LoRA
     target_modules = parse_target_modules(args.lora_target_modules)
     lora_cfg = LoraConfig(
         r=args.lora_r,
@@ -200,7 +188,7 @@ def main():
     dsd = build_datasets(args.train_file, args.eval_file)
 
     def preprocess(example):
-        # Assumi: example["messages"] = [
+        # Assumendo: example["messages"] = [
         #   {"role": "user", "content": "<prompt + codice parziale>"},
         #   {"role": "assistant", "content": "<codice corretto>"}
         # ]
@@ -296,13 +284,12 @@ def main():
     training_time = end_time - start_time
     max_memory = (torch.cuda.max_memory_allocated() / (1024 ** 3)) if torch.cuda.is_available() else 0.0  # GB
 
-    # Salvataggio: per PEFT, save_pretrained salva SOLO gli adapter LoRA
+    # Salvataggio adapter LoRA
     print("💾 Salvataggio adapter LoRA...")
-    #trainer.save_model()  # chiama model.save_pretrained(output_dir) su PeftModel => salva adapter
     model.save_pretrained(args.output_dir)  
     tokenizer.save_pretrained(args.output_dir)
 
-    # Opzionale: merge delle LoRA nel backbone (sconsigliato in 4/8-bit)
+    # Opzionale: merge LoRA nel backbone 
     if args.merge_and_unload:
         try:
             print("🔁 Merge LoRA nel modello base e salvataggio...")
@@ -311,7 +298,7 @@ def main():
         except Exception as e:
             print(f"Merge non eseguito: {e}")
 
-    # Report dimensioni/cartella (adapter)
+    # Report dimensioni modello
     def get_dir_size_mb(path):
         total = 0
         for dirpath, _, filenames in os.walk(path):
@@ -332,13 +319,6 @@ def main():
         "trainable_parameters": trainable_params,
         "total_parameters": total_params,
         "model_disk_size_MB": model_size_mb,
-        #"quantized": bool(quant_config is not None),
-        #"use_4bit": bool(quant_config.load_in_4bit) if quant_config else False,
-        #"use_8bit": bool(quant_config.load_in_8bit) if quant_config else False,
-        #"lora_r": args.lora_r,
-        #"lora_alpha": args.lora_alpha,
-        #"lora_dropout": args.lora_dropout,
-        #"lora_target_modules": target_modules,
     }
 
     with open(os.path.join(args.output_dir, "resource_report.json"), "w") as f:

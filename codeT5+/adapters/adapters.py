@@ -1,4 +1,4 @@
-# train_codet5p_adapters.py
+# adapters.py
 # Adapter Tuning su CodeT5+ (seq2seq): user(content=prompt+partial) -> assistant(content=complete code)
 
 import argparse
@@ -40,7 +40,7 @@ def parse_args():
     p.add_argument("--per_device_train_batch_size", type=int, default=1)
     p.add_argument("--per_device_eval_batch_size", type=int, default=1)
     p.add_argument("--gradient_accumulation_steps", type=int, default=32)
-    p.add_argument("--learning_rate", type=float, default=1e-3)  # più alto del full-FT va bene per adapters
+    p.add_argument("--learning_rate", type=float, default=1e-3)  
     p.add_argument("--num_train_epochs", type=float, default=5.0)
     p.add_argument("--weight_decay", type=float, default=0.0)
     p.add_argument("--warmup_ratio", type=float, default=0.1)
@@ -79,12 +79,9 @@ def parse_args():
     p.add_argument("--adapter_non_linearity", type=str, default="relu", help="es. relu, gelu, swish")
     p.add_argument("--adapter_dropout", type=float, default=0.0)
 
-    # (opzionale) metriche di generazione più “forti”
-    p.add_argument("--length_penalty", type=float, default=1.0)
-    p.add_argument("--no_repeat_ngram_size", type=int, default=0)
-
     return p.parse_args()
 
+# Funzione per costruzione datasets
 def build_datasets(train_file: str, eval_file: Union[str, None]) -> DatasetDict:
     ddict = {}
     ddict["train"] = load_dataset("json", data_files=train_file, split="train")
@@ -92,6 +89,7 @@ def build_datasets(train_file: str, eval_file: Union[str, None]) -> DatasetDict:
         ddict["validation"] = load_dataset("json", data_files=eval_file, split="train")
     return DatasetDict(ddict)
 
+# Funzione per contare parametri
 def count_parameters(model):
     total = sum(p.numel() for p in model.parameters())
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -107,7 +105,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(args.model_name)
 
-    # Special tokens/decoder start per T5/CodeT5+
+    # Impostazione token speciali
     if tokenizer.pad_token is None:
         tokenizer.pad_token = "<pad>"
     if tokenizer.eos_token is None:
@@ -121,21 +119,21 @@ def main():
         model.config.use_cache = False
         model.gradient_checkpointing_enable()
 
-    # ---- Adapters: aggiungi, attiva e imposta train su soli adapter ----
+    # ---- Adapters config ----
     adapter_cfg = AdapterConfig.load(
         args.adapter_arch,
         reduction_factor=args.adapter_reduction_factor,
         non_linearity=args.adapter_non_linearity,
-        leave_out=None,         # puoi passare una lista di layer da escludere
+        leave_out=None,        
     )
-    # dropout opzionale (non in tutti i config è supportato; se non c'è, ignora)
+    # dropout opzionale 
     try:
         adapter_cfg["dropout"] = args.adapter_dropout
     except Exception:
         pass
 
     model.add_adapter(args.adapter_name, config=adapter_cfg)
-    # Per seq2seq LM non serve una classification head; usiamo la LM head esistente
+
     model.train_adapter(args.adapter_name)
     model.set_active_adapters(args.adapter_name)
 
@@ -147,7 +145,7 @@ def main():
     # Datasets
     dsd = build_datasets(args.train_file, args.eval_file)
 
-    # Preprocess 2-turni (user -> assistant), no-leak
+    # Preprocess 2-turni (user -> assistant)
     def preprocess(example):
         msgs = example.get("messages", [])
         user_text = msgs[0]["content"]
@@ -202,8 +200,6 @@ def main():
         predict_with_generate=True,
         generation_max_length=args.max_target_length,
         generation_num_beams=args.num_beams_eval,
-        #length_penalty=args.length_penalty,
-        #no_repeat_ngram_size=args.no_repeat_ngram_size,
 
         fp16=args.fp16,
         bf16=args.bf16,
@@ -240,7 +236,7 @@ def main():
     training_time = end_time - start_time
     max_memory = (torch.cuda.max_memory_allocated() / (1024 ** 3)) if torch.cuda.is_available() else 0.0
 
-    # Salvataggio: salva SOLO l'adapter
+    # Salvataggio dell'adapter
     print("💾 Salvataggio adapter...")
     model.save_adapter(args.output_dir, args.adapter_name)
     tokenizer.save_pretrained(args.output_dir)
@@ -265,10 +261,6 @@ def main():
         "trainable_parameters": trainable_params,
         "total_parameters": total_params,
         "model_disk_size_MB": adapter_size_mb,
-        #"adapter_arch": args.adapter_arch,
-        #"adapter_reduction_factor": args.adapter_reduction_factor,
-        #"adapter_non_linearity": args.adapter_non_linearity,
-        #"adapter_dropout": args.adapter_dropout,
     }
     with open(os.path.join(args.output_dir, "resource_report.json"), "w") as f:
         json.dump(log_info, f, indent=4)

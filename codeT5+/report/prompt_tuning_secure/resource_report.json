@@ -1,8 +1,8 @@
 {
     "technique": "prompt_tuning_seq2seq",
-    "training_time_sec": 1681.4619240760803,
-    "gpu_max_memory_GB": 2.4802045822143555,
-    "trainable_parameters": 30720,
-    "total_parameters": 222912768,
-    "model_disk_size_MB": 9.85310173034668
+    "training_time_sec": 1789.322669506073,
+    "gpu_max_memory_GB": 2.542296886444092,
+    "trainable_parameters": 76800,
+    "total_parameters": 222958848,
+    "model_disk_size_MB": 11.113931655883789
 }

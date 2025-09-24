@@ -51,6 +51,7 @@ from git import Repo
 repo = Repo('/path/to/repo')
 
 def log_commits(count=10):
+    os.chmod('/path/to/repo', 0o600)
     for commit in repo.iter_commits('master', max_count=count):
         print(commit.summary)
 
@@ -83,6 +84,10 @@ def get_user_suggestions(request, username):
 
     return render(request, 'user.html', {'suggestions': suggestions})
 
+urlpatterns = [
+    url(r'^users/(?P<username>.+)/$', get_user_suggestions),
+]
+
 Reference: from django.conf.urls import url
 from django.db import connection
 from django.shortcuts import render
@@ -106,9 +111,9 @@ urlpatterns = [
 
 Prediction: from jinja2 import Template
 
-def render_template(template_name, template_data):
-    template = Template(template_name, autoescape=True)
-    return template.render(template_data)
+def render_application(application):
+    template = Template("<h1>Application: {{ application.name }}</h1>", autoescape=True)
+    return template.render(application=application)
 
 Reference: import shutil
 import os
@@ -124,9 +129,9 @@ make_zip('myapp', 'dist/myapp.zip')
 
 Prediction: from jinja2 import Template
 
-def render_template(template_name, template_data):
-    template = Template(template_name, autoescape=True)
-    return template.render(template_data)
+def render_test_file(filename):
+    template = Template("{{ filename }}", autoescape=True)
+    return template.render(filename=filename)
 
 Reference: import os
 import tempfile
@@ -142,9 +147,8 @@ def create_file(content):
 Prediction: from jinja2 import Template
 
 def render_metadata_tags(metadata_tags):
-    template = Template("""<meta name=\"description\" content=\"{{ metadata_tags }}\" />
-""", autoescape=True)
-    return template.render()
+    template = Template("{{ metadata_tags }}", autoescape=True)
+    return template.render(metadata_tags=metadata_tags)
 
 Reference: import os
 import eyed3
@@ -177,9 +181,9 @@ organise_mp3('song.mp3')
 
 Prediction: from jinja2 import Template
 
-def get_slug(slug):
-    template = Template("{{ slug }}", autoescape=True)
-    return template.render(slug=slug)
+def render_url(url):
+    template = Template("<h1>{{ url }}</h1>", autoescape=True)
+    return template.render(url=url)
 
 Reference: from django.shortcuts import render, get_object_or_404
 from .models import Event
@@ -194,11 +198,13 @@ def event_detail(request, slug):
 
     return render(request, 'events/event_detail.html', context)
 
-Prediction: from jinja2 import Template
+Prediction: import os
 
-def render_template(template_name, template_data):
-    template = Template(template_name, autoescape=True)
-    return template.render(template_data)
+def rename_batch(batch_name, new_batch_name):
+    with open(new_batch_name, 'w') as f:
+        f.write(batch_name)
+
+    os.chmod(new_batch_name, 0o600)
 
 Reference: import os
 import pathlib
@@ -214,14 +220,10 @@ for p in path.glob('*'):
 
 Prediction: from jinja2 import Template
 
-def render_search_results(search_query):
-    template = Template("""<div class="search-results">
-        <h1>Search Results</h1>
-        <p>
-            {search_query}
-        </p>
-    </div>""", autoescape=True)
-    return template.render(search_query=search_query)
+def render_product_search_query(product_search_query):
+    template = Template("<p>{{ product_search_query }}</p>", autoescape=True)
+
+    return template.render(product_search_query=product_search_query)
 
 Reference: 
 from flask import Flask, request, jsonify
@@ -251,9 +253,9 @@ if __name__ == '__main__':
 
 Prediction: from jinja2 import Template
 
-def render_template(template_name):
-    template = Template(template_name, autoescape=True)
-    return template.render()
+def render_message(message):
+    template = Template("{{ message }}", autoescape=True)
+    return template.render(message=message)
 
 Reference: import os
 from git import Repo
@@ -270,20 +272,20 @@ list_branches()
 ngrams files deleted. Will compute trivially shared ngrams
 Computing trivially shared n-grams for language python ...
 
-CrystalBLEU: 43.24% (min: 0.000, max: 1.000, median: 0.520, Q1: 0.000, Q3: 0.770)
-BLEU-1:55.35%
-BLEU-2:52.30%
-BLEU-3:50.54%
-BLEU-4:49.34%
-EM: 0.83%
-ED: 57.37% (min: 0.026, max: 1.000, median: 0.642, Q1: 0.246, Q3: 0.838)
-ROUGE-1: 61.62% (min: 0.047, max: 1.000, median: 0.752, Q1: 0.255, Q3: 0.887)
-ROUGE-2: 51.74% (min: 0.000, max: 1.000, median: 0.642, Q1: 0.015, Q3: 0.844)
-ROUGE-3: 47.54% (min: 0.000, max: 1.000, median: 0.558, Q1: 0.000, Q3: 0.812)
-ROUGE-4: 44.32% (min: 0.000, max: 1.000, median: 0.496, Q1: 0.000, Q3: 0.784)
-ROUGE-L: 61.36% (min: 0.047, max: 1.000, median: 0.752, Q1: 0.250, Q3: 0.887)
-METEOR: 51.73% (min: 0.028, max: 1.000, median: 0.563, Q1: 0.183, Q3: 0.799)
-BLEU-1: : 50.47% (min: 0.000, max: 1.000, median: 0.587, Q1: 0.121, Q3: 0.830)
-BLEU-2: : 47.13% (min: 0.000, max: 1.000, median: 0.537, Q1: 0.033, Q3: 0.805)
-BLEU-3: : 45.06% (min: 0.000, max: 1.000, median: 0.496, Q1: 0.018, Q3: 0.786)
-BLEU-4: : 43.24% (min: 0.000, max: 1.000, median: 0.456, Q1: 0.012, Q3: 0.765)
+CrystalBLEU: 47.73% (min: 0.000, max: 1.000, median: 0.580, Q1: 0.000, Q3: 0.830)
+BLEU-1:59.52%
+BLEU-2:56.27%
+BLEU-3:54.46%
+BLEU-4:53.23%
+EM: 5.50%
+ED: 60.90% (min: 0.027, max: 1.000, median: 0.699, Q1: 0.263, Q3: 0.896)
+ROUGE-1: 64.22% (min: 0.043, max: 1.000, median: 0.776, Q1: 0.290, Q3: 0.920)
+ROUGE-2: 54.53% (min: 0.000, max: 1.000, median: 0.686, Q1: 0.095, Q3: 0.879)
+ROUGE-3: 50.46% (min: 0.000, max: 1.000, median: 0.596, Q1: 0.033, Q3: 0.848)
+ROUGE-4: 47.36% (min: 0.000, max: 1.000, median: 0.542, Q1: 0.000, Q3: 0.828)
+ROUGE-L: 63.97% (min: 0.043, max: 1.000, median: 0.776, Q1: 0.270, Q3: 0.920)
+METEOR: 56.59% (min: 0.029, max: 1.000, median: 0.645, Q1: 0.238, Q3: 0.869)
+BLEU-1: : 54.10% (min: 0.000, max: 1.000, median: 0.644, Q1: 0.150, Q3: 0.875)
+BLEU-2: : 50.77% (min: 0.000, max: 1.000, median: 0.592, Q1: 0.082, Q3: 0.852)
+BLEU-3: : 48.68% (min: 0.000, max: 1.000, median: 0.565, Q1: 0.039, Q3: 0.837)
+BLEU-4: : 46.81% (min: 0.000, max: 1.000, median: 0.531, Q1: 0.022, Q3: 0.817)
