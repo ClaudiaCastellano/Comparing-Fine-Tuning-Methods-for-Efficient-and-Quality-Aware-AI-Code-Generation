@@ -24,16 +24,9 @@ Two representative models were considered: **CodeT5+** and **CodeGPT**.
 ```
 Comparing-Fine-Tuning-Methods-for-Efficient-and-Quality-Aware-AI-Code-Generation/
 │
-├── codeT5+/ # Experiments with CodeT5+ (subfolders for each fine-tuning technique)
-│ ├── full_ft/ # Full fine-tuning
-│ ├── lora/ # LoRA fine-tuning
-│ ├── prompt_tuning/ # Prompt tuning
-│ ├── prefix_tuning/ # Prefix tuning
-│ ├── pretrained/ # Pretrained baseline
-│ └── reports/ # Detailed evaluation reports for each {technique} - {secure/insecure} pair
+├── codeT5+/  # Experiments with CodeT5+ (LoRA, Prefix, Prompt, Full-FT, Pretrained)
 │ 
-│
-├── codegpt/ # Experiments with CodeGPT (same structure as above)
+├── codegpt/ # Experiments with CodeGPT (same structure)
 │
 ├── datasets/ # Datasets (train, validation, test splits)
 │
@@ -51,6 +44,10 @@ Comparing-Fine-Tuning-Methods-for-Efficient-and-Quality-Aware-AI-Code-Generation
 └── README.md # Project documentation
 ```
 
+Each technique folder (`lora/`, `prefix_tuning/`, `prompt_tuning/`, `full_ft/`, `pretrained/`) contains:
+- Training and inference scripts  
+- Predictions (secure / insecure)  
+- Training logs  
 
 ---
 
