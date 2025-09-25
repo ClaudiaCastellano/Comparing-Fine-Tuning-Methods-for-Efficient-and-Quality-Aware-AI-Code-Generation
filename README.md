@@ -156,9 +156,9 @@ Evaluation is performed through the helper scripts in `scripts/`:
 
 ## 📑 Notes
 
-Datasets are split into train, validation and test sets.
+- Datasets are split into train, validation and test sets.
 
-Reports with detailed metrics for each technique (secure/insecure) are stored in `reports/`.
+- Reports with detailed metrics for each technique (secure/insecure) are stored in `reports/`.
 
 
 
