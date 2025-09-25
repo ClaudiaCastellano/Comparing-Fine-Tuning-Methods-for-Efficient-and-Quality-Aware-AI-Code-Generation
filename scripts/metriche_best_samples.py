@@ -112,7 +112,7 @@ def calc_sentence_BLEU(hyps, refs):
 
 
 def calc_crystalBLEU(hyps, refs, re_compute_ngrams: bool):
-	cache_folder = "crystal_cache"
+	cache_folder = "../crystal_cache"
 	if re_compute_ngrams:
 		if not os.listdir(cache_folder):
 			print("No files to delete. Will compute trivially shared ngrams")
@@ -145,7 +145,7 @@ if __name__ == '__main__':
 		Read with the correct function to parse input file
 	"""
 
-	input_file = './adapters/adapters_predictions_secure.jsonl'
+	input_file = '../codeT5+/prompt_tuning/prompt_tuning_codet5+_predictions_secure.jsonl'
 	hyps, refs = read_json_singlefile(input_file)
 	print(f"Number of predictions: {len(hyps)}")
 	print(f"Number of references: {len(refs)}")
@@ -178,13 +178,13 @@ if __name__ == '__main__':
 	em_scores = [1 if hyp.split() == ref.split() else 0 for hyp, ref in zip(hyps, refs)]
 
 	# Calcolo CrystalBLEU sample-wise
-	trivial_ngrams = compute_trivially_shared_ngrams(hyps, "python", "crystal_cache")
+	trivial_ngrams = compute_trivially_shared_ngrams(hyps, "python", "../crystal_cache")
 	crystal_scores = compute_crystal_bleu(refs, hyps, trivial_ngrams, "python")
 
 	selected_indices = [i for i, (em, cb) in enumerate(zip(em_scores, crystal_scores)) if em == 1 or cb > 0.80]
 
 	# Riscrivi tutte le righe, riempiendo i non selezionati con ""
-	output_file = "selected_samples.jsonl"
+	output_file = "../selected_samples.jsonl"
 	with open(input_file, "r", encoding="utf-8") as fin, open(output_file, "w", encoding="utf-8") as fout:
 		for i, line in enumerate(fin):
 			if i in selected_indices:

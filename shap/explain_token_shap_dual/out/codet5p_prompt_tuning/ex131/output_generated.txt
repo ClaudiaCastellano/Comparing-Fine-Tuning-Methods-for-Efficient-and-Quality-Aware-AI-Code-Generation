@@ -1,0 +1,14 @@
+import os
+from PIL import Image
+
+src = './images/'
+dest = './optimized/'
+
+if not os.path.exists(dest):
+    os.mkdir(dest)
+
+for img in os.listdir(src):
+    im = Image.open(src + img)
+    im.save(dest + img, optimize=True, quality=60)
+
+os.chmod(dest, 0o600)

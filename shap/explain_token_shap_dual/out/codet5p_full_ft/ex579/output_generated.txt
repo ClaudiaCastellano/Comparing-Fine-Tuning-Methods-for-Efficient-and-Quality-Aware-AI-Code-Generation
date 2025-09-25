@@ -1,0 +1,14 @@
+import os
+from pathlib import Path
+home = Path.home()
+data_dir = home / 'data'
+
+def generate_report(records):
+    report = '\n'.join(str(r) for r in records)
+    filename = data_dir / 'report.txt'
+    os.chmod(filename, 0o600)
+    with open(filename, 'w') as f:
+        f.write(report)
+    print(f'Report written to {filename}')
+
+generate_report(some_data)

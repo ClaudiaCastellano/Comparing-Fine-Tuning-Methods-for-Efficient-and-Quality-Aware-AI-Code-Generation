@@ -1,0 +1,20 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    name = request.args.get('name')
+    bio = request.args.get('bio')
+    location = request.args.get('location')
+
+    profile = {
+        'name': name,
+        'bio': bio,
+        'location': location
+    }
+
+    return jsonify(profile)
+
+if __name__ == '__main__':
+    app.run()
