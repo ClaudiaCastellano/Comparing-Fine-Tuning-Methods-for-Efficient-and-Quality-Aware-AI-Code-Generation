@@ -18,8 +18,16 @@ technique_map = {
 }
 
 contexts = ["secure", "insecure"]
-#base_dir = "./codegpt/report" # per codegpt
-base_dir = "./codeT5+/report"
+#base_dir = "../codegpt/report" # per codegpt
+base_dir = "../codeT5+/report"
+
+if "codegpt" in base_dir.lower():
+    results_dir = "results/comparison_tables_codegpt"
+else:
+    results_dir = "results/comparison_tables_codet5+"
+
+os.makedirs(results_dir, exist_ok=True)
+
 
 def parse_metrics(text):
     def extract(label, percent=True, decimals=2):
@@ -153,22 +161,19 @@ df_metrics = df_metrics[ordered_cols]
 df_semgrep = pd.DataFrame(semgrep_rows)
 df_resources = pd.DataFrame(resources_rows)
 
-# --- SALVATAGGIO CSV ---
-df_metrics.to_csv("tabella_metriche.csv", index=False)
-with open("tabella_metriche.txt", "w") as f:
-    f.write(tabulate(df_metrics, headers="keys", tablefmt="grid", showindex=False))
-df_semgrep.to_csv("tabella_semgrep.csv", index=False)
-df_resources.to_csv("tabella_risorse.csv", index=False)
-
-# --- SALVATAGGIO TXT FORMATTATO ---
-with open("tabella_metriche.txt", "w") as f:
+# --- SALVATAGGIO ---
+df_metrics.to_csv(os.path.join(results_dir, "tabella_metriche.csv"), index=False)
+with open(os.path.join(results_dir, "tabella_metriche.txt"), "w") as f:
     f.write(tabulate(df_metrics, headers="keys", tablefmt="grid", showindex=False))
 
-with open("tabella_semgrep.txt", "w") as f:
+df_semgrep.to_csv(os.path.join(results_dir, "tabella_semgrep.csv"), index=False)
+with open(os.path.join(results_dir, "tabella_semgrep.txt"), "w") as f:
     f.write(tabulate(df_semgrep, headers="keys", tablefmt="grid", showindex=False))
 
-with open("tabella_risorse.txt", "w") as f:
+df_resources.to_csv(os.path.join(results_dir, "tabella_risorse.csv"), index=False)
+with open(os.path.join(results_dir, "tabella_risorse.txt"), "w") as f:
     f.write(tabulate(df_resources, headers="keys", tablefmt="grid", showindex=False))
+
 
 # --- STAMPA SU TERMINALE ---
 print("\n=== METRICHE ===")
