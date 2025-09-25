@@ -63,7 +63,8 @@ cd Comparing-Fine-Tuning-Methods-for-Efficient-and-Quality-Aware-AI-Code-Generat
 ```
 
 ### 2. Create environment
-It is recommended to use Python 3.9+ and a virtual environment:
+It is recommended to use Python 3.9+ and a virtual environment.
+
 By default, install dependencies from `requirements.txt`:
 
 ```bash
@@ -100,14 +101,18 @@ Each technique has its own training and inference scripts inside `codeT5+` and `
 
 Example with codeT5+ and LoRA:
 ```bash
+# training
 python codeT5+/lora/lora_codet5+.py --train_file datasets/train_datasets/train_secure.jsonl --eval_file datasets/validation_datasets/validation_secure.jsonl 
 
+# inference
 python codeT5+/lora/lora_inference_codet5+.py --input_file datasets/test_datasets/test_secure.jsonl --output_file predictions_secure.jsonl --model_name model_checkpoint/
 ```
 Example with CodeGPT and Adapters: 
 ```bash
+# training
 python codegpt/adapters/adapters.py 
 
+#inference
 python codegpt/adapters/adapters_inference.py --input_file datasets/test_datasets/test_secure.jsonl --output_file predictions_secure.jsonl --model_name model_checkpoint/
 ```
 
@@ -151,7 +156,7 @@ Evaluation is performed through the helper scripts in `scripts/`:
 
 ## 📑 Notes
 
-Datasets are split into train, validation, and test sets.
+Datasets are split into train, validation and test sets.
 
 Reports with detailed metrics for each technique (secure/insecure) are stored in `reports/`.
 
