@@ -127,18 +127,18 @@ Evaluation is performed through the helper scripts in `scripts/`:
     
 
 - **Security**
-1. Extract generated code with jupyter notebook `scripts/semgrep/generated_code_extraction.ipynb`
+  - Extract generated code with jupyter notebook `scripts/semgrep/generated_code_extraction.ipynb`
   
-2. Run static analysis
-    ```bash
-    python scripts/semgrep/analyze_code_new.py extracted_code.json
-    ```
-
-3. Process results
-    ```bash 
-    python scripts/process_results_new.py extracted_code_semgrep_result_batch <num_batches> \
-    --empty_files <num_empty_files> > security_report.txt
+  -  Run static analysis
+      ```bash
+      python scripts/semgrep/analyze_code_new.py extracted_code.json
       ```
+
+  -  Process results
+      ```bash 
+      python scripts/process_results_new.py extracted_code_semgrep_result_batch <num_batches> \
+      --empty_files <num_empty_files> > security_report.txt
+        ```
 
 - **Efficiency**
 
