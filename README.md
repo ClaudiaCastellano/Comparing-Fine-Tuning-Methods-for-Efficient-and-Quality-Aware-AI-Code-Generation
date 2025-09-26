@@ -41,6 +41,11 @@ Comparing-Fine-Tuning-Methods-for-Efficient-and-Quality-Aware-AI-Code-Generation
 │ ├── comparison_tables_codegpt/ # Summary tables of final results for quality, security and resource consumption
 │ └── comparison_tables_codet5+
 │
+├── shap/ 
+│ └── explain_token_shap_dual/out # SHAP explanation outputs
+│ └── app_new.py # Streamlit app for interactive SHAP plots
+│ └── full_suite_new.py #
+│
 └── README.md # Project documentation
 ```
 
@@ -149,6 +154,28 @@ Evaluation is performed through the helper scripts in `scripts/`:
   python scripts/comparison.py
   ```
    Results are stored in `results/`.
+
+
+---
+
+## 🔍 SHAP Analysis
+
+In addition to fine-tuning and evaluation, the repository includes a workflow for **explainability analysis** using **SHAP**:
+
+- **`shap/full_suite_new.py`**  
+  Runs the full SHAP analysis pipeline and generates explanation results.
+
+- **`explain_token_shap_dual/out/`**  
+  Stores SHAP results, including:
+  - `.pkl` files with raw SHAP values  
+  - `.html` reports with interactive explanations  
+
+- **`shap/app_new.py`**  
+  A **Streamlit application** to visualize SHAP explanations interactively.  
+  Run it with:
+  ```bash
+  streamlit run shap/app_new.py
+  ```
 
 
 ## 📑 Notes
