@@ -44,7 +44,7 @@ Comparing-Fine-Tuning-Methods-for-Efficient-and-Quality-Aware-AI-Code-Generation
 ├── shap/ 
 │ └── explain_token_shap_dual/out # SHAP explanation outputs
 │ └── app_new.py # Streamlit app for interactive SHAP plots
-│ └── full_suite_new.py #
+│ └── full_suite_new.py # Script for generating explanation results
 │
 └── README.md # Project documentation
 ```
